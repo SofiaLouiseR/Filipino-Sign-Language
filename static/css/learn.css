@@ -1,0 +1,47 @@
+#video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0px;
+}
+
+#embedded-video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.section-topic {
+    display: flex;
+    flex-flow: column;
+}
+
+.section-topic__select {
+    font-size: var(--normal-font-size);
+    padding: 1rem;
+}
+
+#practice__button {
+    padding: 0.5rem 0.5em;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+#practice__button i {
+    font-size: 2rem;
+    padding-right: 5px;
+}
+
+.section-practice {
+    margin-top: 2rem;
+    text-align: right;
+    text-align: -webkit-right;
+}

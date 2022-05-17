@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino Sign Language</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
+    <script src="{{url_for('static', filename='js/template.js')}}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+    {% block style %}{% endblock %}
+</head>
+
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <div class="search hide" id="search-container">
+            <div class="search-bar">
+                <input type="search" class="search__input" id="search__input" data-table="words-list"
+                    placeholder="Maghanap ng salita">
+            </div>
+            <div class="search-results">
+                <table class="words-list" id="search-results__table">
+                    <tr>
+                        <td>1</td>
+                        <td>isa/one</td>
+                    </tr>
+                    <tr>
+                        <td>pamilya</td>
+                        <td>family</td>
+                    </tr>
+                    <tr>
+                        <td>mama</td>
+                        <td>mother/nanay/ina</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <nav class="nav container">
+            <a href="#" class="nav__logo">FSL</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="{{ url_for('learn') }}" class="nav__link active-link">
+                            <i class='bx bxs-book nav__icon'></i>
+                            <span class="nav__name">Learn</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link">
+                            <i class='bx bxs-video nav__icon'></i>
+                            <span class="nav__name">Live</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">
+                            <i class='bx bxs-user-circle nav__icon'></i>
+                            <span class="nav__name">Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="show-search__button" id="show-search__button">
+                <i class='bx bx-search'></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>

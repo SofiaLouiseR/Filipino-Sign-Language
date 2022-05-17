@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+<script src="{{url_for('static', filename='js/learn.js')}}"></script>
+{% endblock %}
+
+{% extends "template.html" %}
+{% block content %}
+<h1 class="section__title">Pamilya</h1>
+<section class="container video" id="video-container">
+  <iframe src="https://www.youtube.com/embed/VwWP8wX8BwQ" id="embedded-video" title="YouTube video player"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</section>
+<section class="container section-practice">
+  <a href="{{ url_for('practice') }}"><button id="practice__button" ><i class='bx bx-dumbbell'></i> Practice</button></a>
+</section>
+<section class="container section-topic">
+  <label for="topic">Lesson</label>
+  <select name="topic" class="section-topic__select">
+    <option value="Pagbati">Pagbati</option>
+    <option value="Bilang">Bilang</option>
+    <option value="Pamilya">Pamilya</option>
+  </select>
+  <br>
+  <table id="section-topic__table">
+    <thead></thead>
+    <tbody>
+      <tr class="section-topic__table__tr">
+        <td>1</td>
+      </tr>
+      <tr class="section-topic__table__tr">
+        <td>pamilya</td>
+      </tr>
+      <tr class="section-topic__table__tr">
+        <td>mama</td>
+    </tbody>
+  </table>
+</section>
+
+{% endblock %}
+
+</html>
