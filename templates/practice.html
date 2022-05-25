@@ -3,6 +3,12 @@
 {% block style %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
 <script src="{{url_for('static', filename='js/practice.js')}}"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var word = localStorage.getItem('word');
+    document.getElementById('section__word').innerHTML = word;
+  });
+</script>
 {% endblock %}
 
 {% extends "template.html" %}

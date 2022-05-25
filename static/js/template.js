@@ -35,33 +35,3 @@
     });
 
 })(document);
-
-$(document).ready(function () {
-    $("#show-search__button").click(function () {
-        $("#search-container").removeClass("hide");
-        $("#search__input").focus();
-
-        window.addEventListener('click', detectClickOnSearchResults);
-    });
-
-});
-
-// if (e.key === "Escape") {
-//     // write your logic here.
-// }
-
-// function detectClickOnSearchResults(e) {
-//     if (document.getElementById('search-results').contains(e.target) || e.key) {
-//         console.log("inside");
-//     } else {
-//         console.log("outside");
-//         window.removeEventListener('click', detectClickOnSearchResults);
-//     }
-// }
-
-// document.addEventListener('click', function handleClickOutsideSearchResults(event) {
-//     const box = document.getElementById('search-results');
-//     if (!box.contains(event.target)) {
-//         box.style.display = 'none';
-//     }
-// });

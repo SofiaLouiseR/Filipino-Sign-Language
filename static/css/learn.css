@@ -25,7 +25,12 @@
     padding: 1rem;
 }
 
-#practice__button {
+#section-practice__a {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#section-practice__button {
     padding: 0.5rem 0.5em;
     font-size: 1.5rem;
     border-radius: 1rem;
@@ -35,7 +40,7 @@
     align-items: center;
 }
 
-#practice__button i {
+#section-practice__button i {
     font-size: 2rem;
     padding-right: 5px;
 }

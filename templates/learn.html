@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
 <script src="{{url_for('static', filename='js/learn.js')}}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    $("#section-topic__table tr.section-topic__table__tr").click(function () {
+      var word = $(this).find('td').text();
+      localStorage.setItem('word', word);
+    });
+    document.getElementById('section-practice__button').addEventListener("click", () => {
+      localStorage.getItem('word');
+    });
+  });
+</script>
+
 {% endblock %}
 
 {% extends "template.html" %}
@@ -14,7 +27,7 @@
     allowfullscreen></iframe>
 </section>
 <section class="container section-practice">
-  <a href="{{ url_for('practice') }}"><button id="practice__button" ><i class='bx bx-dumbbell'></i> Practice</button></a>
+  <a href="{{ url_for('practice') }}" id="section-practice__a"><button id="section-practice__button"><i class='bx bx-dumbbell'></i> Practice</button></a>
 </section>
 <section class="container section-topic">
   <label for="topic">Lesson</label>

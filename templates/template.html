@@ -9,6 +9,26 @@
     <script src="{{url_for('static', filename='js/template.js')}}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('show-search__button').addEventListener("click", () => {
+                document.getElementById('search-container').classList.remove("hide");
+                document.addEventListener('click', handleClickOutsideSearch);
+            });
+        });
+
+        function handleClickOutsideSearch(event) {
+            const searchButton = document.getElementById('show-search__button');
+            const box = document.getElementById('search-bar');
+            const box2 = document.getElementById('search-results');
+            if (!searchButton.contains(event.target) && !box.contains(event.target) && !box2.contains(event.target)) {
+                document.getElementById('search-container').classList.add("hide");
+                // document.getElementById('search__input').value = "";
+            }
+        }
+    </script>
+
     {% block style %}{% endblock %}
 </head>
 
@@ -16,10 +36,11 @@
     <!--=============== HEADER ===============-->
     <header class="header" id="header">
         <div class="search hide" id="search-container">
-            <div class="search-bar">
+            <div class="search-bar" id="search-bar">
                 <input type="search" class="search__input" id="search__input" data-table="words-list"
                     placeholder="Maghanap ng salita">
             </div>
+            <hr>
             <div class="search-results" id="search-results">
                 <table class="words-list" id="search-results__table">
                     <tr>
@@ -36,6 +57,7 @@
                     </tr>
                 </table>
             </div>
+            <div class="overlay"></div>
         </div>
         <nav class="nav container">
             <a href="#" class="nav__logo">FSL</a>
