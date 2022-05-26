@@ -16,32 +16,32 @@
 <section class="container">
   <h1 class="section__title" id="section__word">Word</h1>
 </section>
-<!--  -->
+
 <div style="justify-content: center; display: flex; margin-top: 30px;">
   <img src="{{ url_for('video') }}">
 </div>
 
-<!--  -->
-<!-- <section class="container section-practice">
-  <a href="{{ url_for('do_something') }}"><button id="practice__button">
-    <i class='bx bx-dumbbell'></i> Test</button></a>
-</section> -->
-<!--  -->
+
 
 <button onclick="performPrediction()"> Practice</button>
-{% endblock %}
+<section class="container section-practice">
+  <a href="{{ url_for('learn') }}" id="section-practice__a"><button id="section-practice__button"><i class='bx bx-dumbbell'></i> Goback</button></a>
+</section>
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
   function performPrediction(){
     $.ajax({
       type: "POST",
-      url: "{{ url_for('create_file') }}",
-      data: { "name": "Jim"}
+      url: "{{ url_for('predict') }}",
+      data: { "word": "paalam"}
     })
   }
 </script>
 
+{% endblock %}
 
 
 
