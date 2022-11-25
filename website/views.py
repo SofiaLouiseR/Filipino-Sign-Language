@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, session
 from flask_login import login_required, current_user
 from .models import Note
+from sklearn.utils import shuffle
 from . import db
 import json
 
@@ -24,21 +25,51 @@ def home():
     return render_template("home.html", user=current_user)
 
 
+# @views.route('/quiz', methods=['GET', 'POST'])
+# @login_required
+# def quiz():
+#     topic = session['topic']
+#     words = session['words']
+#     if topic == "":
+#         topic = "none"
+#     print(topic)
+#     print(words)
+#     return render_template("quiz.html", user=current_user, topic=topic, words=words)
+
+
 @views.route('/quiz', methods=['GET', 'POST'])
 @login_required
 def quiz():
-    return render_template("quiz.html", user=current_user, topic="none")
-
-
-@views.route('/openQuiz', methods=['GET', 'POST'])
-@login_required
-def openQuiz():
     if request.method == 'POST':
         topic = request.form.get('topic')
+        words = getWords(topic)
         print(topic)
     else:
+        words = []
         topic = "none"
-    return render_template("quiz.html", user=current_user, topic=topic)
+        print(topic)
+        print(words)
+    return render_template("quiz.html", user=current_user, topic=topic, words=words)
+    # session['topic'] = topic
+    # session['words'] = words
+    # return render_template("quiz.html", user=current_user, topic=topic, words=words)
+    # topic = session['topic']
+    # words = session['words']
+    # if topic == "":
+    #     topic = "none"
+    # print(topic)
+    # print(words)
+    # return render_template("quiz.html", user=current_user, topic=topic, words=words)
+
+
+@views.route('/getWords')
+@login_required
+def getWords(topic):
+    match topic:
+        case "Panahon":
+            return shuffle(["ngayon","gabi","magandang","umaga","walang hanggan","magpakailanman","hinaharap","kasalukuyan","kahapon","bukas","ngayong araw","araw-araw","madalas","kamakailan","mamaya","huli na","maaga","malapit na","paglubog ng araw","pagsikat ng araw","tanghali","hapon","minsan","dalawang beses","tatlong beses","segundo","minuto","oras","isang","dalawang","tatlong"])
+        case "Pamilya":
+            return shuffle(["pamilya","mama"])
 
 
 @views.route('/checkAnswer', methods=['POST', 'GET'])
