@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" crossorigin="anonymous" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+    integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+
+  <title>{% block title %}Home{% endblock %}</title>
+</head>
+
+{% if user.is_authenticated %}
+<body class="vh-100 d-flex flex-column justify-content-start">
+{% else %}
+<body class="vh-100 d-flex flex-column justify-content-center">
+{% endif %}
+  {% if user.is_authenticated %}
+  <nav class="navbar navbar-expand-lg sticky-top" style="background-color: white;">
+    <div class="container-fluid">
+      <div id="topNav" class="d-flex flex-row justify-content-between w-100">
+        <a class="navbar-brand" href="#">Filipino Sign Language</a>
+        <button id="toggleSearch" class="btn d-flex align-items-center" type="button" onclick="
+        if($('#search').hasClass('d-none')){
+            $('#topNav').removeClass('d-flex').addClass('d-none');
+            $('#search').removeClass('d-none').addClass('d-flex');
+            $('#search-results').show();
+            $('#overlay').show();
+          }
+            else {
+              $('#topNav').removeClass('d-none').addClass('d-flex');
+              $('#search').removeClass('d-flex').addClass('d-none');
+              $('#search-results').hide();
+              $('#overlay').hide();
+              }">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="1.2rem">
+            <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z" />
+          </svg>
+        </button>
+      </div>
+      <div id="search" class="d-none w-100" role="search">
+        <input class="form-control" id="searchInput" type="text" placeholder="Search...">
+      </div>
+    </div>
+    <div class="search-results mt-2 w-100" id="search-results"
+      style="display: none; max-height: 60vh; overflow: scroll;">
+      <table class="table table-hover mb-2" id="searchWordsList">
+        <tr>
+          <td>Bilang</td>
+          <td>1</td>
+          <td>isa/one</td>
+        </tr>
+        <tr>
+          <td>Pamilya</td>
+          <td>pamilya</td>
+          <td>family</td>
+        </tr>
+        <tr>
+          <td>Pamilya</td>
+          <td>mama</td>
+          <td>mother/nanay/ina</td>
+        </tr>
+        <tr>
+          <td>Pagbati</td>
+          <td>Hello</td>
+          <td>Hi</td>
+        </tr>
+      </table>
+    </div>
+  </nav>
+  <div id="overlay"></div>
+  <script>
+    $(document).ready(function () {
+      function hideSearch() {
+        $('#topNav').removeClass('d-none').addClass('d-flex');
+        $('#search').removeClass('d-flex').addClass('d-none');
+        $('#search-results').hide();
+        $('#overlay').hide();
+      }
+      $("#overlay").on("click", function () {
+        hideSearch();
+      });
+      $("#searchInput").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#searchWordsList tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+  {% endif %}
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav">
+        {% if user.is_authenticated %}
+        <a class="nav-item nav-link" id="home" href="/">Home</a>
+        <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+        {% else %}
+        <a class="nav-item nav-link" id="login" href="/login">Login</a>
+        <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav> -->
+
+  <div class="container">
+    {% block content %} {% endblock %}
+  </div>
+
+  {% if user.is_authenticated %}
+  <nav class="navbar fixed-bottom navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <ul class="navbar-nav d-flex flex-row justify-content-around w-100">
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-column" aria-current="page" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 1.5rem;">
+              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+              <path
+                d="M352 96c0 53-43 96-96 96s-96-43-96-96s43-96 96-96s96 43 96 96zM240 248V512l-48.4-24.2c-20.9-10.4-43.5-17-66.8-19.3l-96-9.6C12.5 457.2 0 443.5 0 427V224c0-17.7 14.3-32 32-32H62.3c63.6 0 125.6 19.6 177.7 56zm32 264V248c52.1-36.4 114.1-56 177.7-56H480c17.7 0 32 14.3 32 32V427c0 16.4-12.5 30.2-28.8 31.8l-96 9.6c-23.2 2.3-45.9 8.9-66.8 19.3L272 512z" />
+            </svg>
+            <span>Learn</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-column" href="/quiz">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 1.5rem;">
+              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+              <path
+                d="M184 0c30.9 0 56 25.1 56 56V456c0 30.9-25.1 56-56 56c-28.9 0-52.7-21.9-55.7-50.1c-5.2 1.4-10.7 2.1-16.3 2.1c-35.3 0-64-28.7-64-64c0-7.4 1.3-14.6 3.6-21.2C21.4 367.4 0 338.2 0 304c0-31.9 18.7-59.5 45.8-72.3C37.1 220.8 32 207 32 192c0-30.7 21.6-56.3 50.4-62.6C80.8 123.9 80 118 80 112c0-29.9 20.6-55.1 48.3-62.1C131.3 21.9 155.1 0 184 0zM328 0c28.9 0 52.6 21.9 55.7 49.9c27.8 7 48.3 32.1 48.3 62.1c0 6-.8 11.9-2.4 17.4c28.8 6.2 50.4 31.9 50.4 62.6c0 15-5.1 28.8-13.8 39.7C493.3 244.5 512 272.1 512 304c0 34.2-21.4 63.4-51.6 74.8c2.3 6.6 3.6 13.8 3.6 21.2c0 35.3-28.7 64-64 64c-5.6 0-11.1-.7-16.3-2.1c-3 28.2-26.8 50.1-55.7 50.1c-30.9 0-56-25.1-56-56V56c0-30.9 25.1-56 56-56z" />
+            </svg>
+            <span>Quiz</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-column" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="height: 1.5rem;">
+              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+              <path
+                d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z" />
+            </svg>
+            <span>Live</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-column" href="/profile">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 1.5rem;">
+              <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+              <path
+                d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+            </svg>
+            </svg>
+            <span>Profile</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown link
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+  {% endif %}
+  <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+  <script>
+    $(document).ready(function () {
+      $("nav.fixed-bottom a").click(function () {
+        $("nav.fixed-bottom a, nav.fixed-bottom a svg path").removeClass("active");
+        $(this).addClass("active");
+        $(this).find("path").addClass("active");
+      });
+    });
+  </script>
+</body>
+
+</html>

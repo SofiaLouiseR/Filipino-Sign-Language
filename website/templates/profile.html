@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %}Home | Filipino Sign Language{% endblock %} {% block content
+%}
+<div class="list-group list-group-flush">
+  <a href="#" class="list-group-item list-group-item-action"><b>Name:</b> {{ user.first_name }}</a>
+  <a href="#" class="list-group-item list-group-item-action"><b>Email:</b> {{ user.email }}</a>
+  <a href="#" class="list-group-item list-group-item-action"><b>Total Points:</b> {{ user.score }}</a>
+  <a href="/logout" class="list-group-item list-group-item-action">Log out</a>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('nav.fixed-bottom li:nth-child(4) a, nav.fixed-bottom li:nth-child(4) a svg path').addClass('active');
+  });
+</script>
+{% endblock %}
