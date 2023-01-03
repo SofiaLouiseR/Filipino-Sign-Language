@@ -69,16 +69,19 @@ def getWords(topic):
         case "Panahon":
             return shuffle(["ngayon","gabi","magandang","umaga","walang hanggan","magpakailanman","hinaharap","kasalukuyan","kahapon","bukas","ngayong araw","araw-araw","madalas","kamakailan","mamaya","huli na","maaga","malapit na","paglubog ng araw","pagsikat ng araw","tanghali","hapon","minsan","dalawang beses","tatlong beses","segundo","minuto","oras","isang","dalawang","tatlong"])
         case "Pamilya":
-            return shuffle(["pamilya","mama"])
+            return shuffle(["pamilya","mama","lola"])
 
 
 @views.route('/checkAnswer', methods=['POST', 'GET'])
 def process_qt_calculation():
     if request.method == "POST":
-        qtc_data = request.get_json()
-        print(qtc_data)
-        # Dito i-return yung sagot, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
-    results = {'processed': 'true'}
+        # Dito yung code para i-check ang sagot
+        # TYPE HERE
+
+        # Ito naman yung pagbalik sa HTML ng score, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
+        score = 1 #change itong number kung anong score, 1 kung tama, 0 kung mali
+        print(score)
+    results = {'processed': 'true', 'score': score}
     return jsonify(results)
 
 

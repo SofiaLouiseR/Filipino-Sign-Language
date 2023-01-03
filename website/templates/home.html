@@ -18,7 +18,7 @@
     <div>
       <form method="POST" action="/quiz" class="d-flex flex-row justify-content-between align-items-end gap-3">
         <div class="w-100">
-          <input type="text" id="allWordsForQuiz" name="allWordsForQuiz" value="">
+          <!-- <input type="text" id="allWordsForQuiz" name="allWordsForQuiz" value=""> -->
           <label for="topic"><b>Lesson</b></label>
           <select id="topicSelector" name="topic" class="form-select">
             <option value="Panahon">Panahon</option>
@@ -169,26 +169,26 @@
   $(document).ready(function () {
     $('nav.fixed-bottom li:nth-child(1) a, nav.fixed-bottom li:nth-child(1) a svg path').addClass('active');
 
-    function filterTopicsList() {
-      $("#topicsList td:nth-child(1):contains('" + $("#topicSelector").val() + "')").parent().show();
-      $("#topicsList td:nth-child(1):not(:contains('" + $("#topicSelector").val() + "'))").parent().hide();
-      let words = [];
-      $('#topicsList tr:visible td:nth-child(2)').each(function(i, obj) {
-        words.push($(this).html());
-      });
-      $('#allWordsForQuiz').val(words.join(','));
-    }
-    $('#topicSelector').change(function () {
-      filterTopicsList();
-    });
+    // function filterTopicsList() {
+    //   $("#topicsList td:nth-child(1):contains('" + $("#topicSelector").val() + "')").parent().show();
+    //   $("#topicsList td:nth-child(1):not(:contains('" + $("#topicSelector").val() + "'))").parent().hide();
+    //   let words = [];
+    //   $('#topicsList tr:visible td:nth-child(2)').each(function(i, obj) {
+    //     words.push($(this).html());
+    //   });
+    //   $('#allWordsForQuiz').val(words.join(','));
+    // }
+    // $('#topicSelector').change(function () {
+    //   filterTopicsList();
+    // });
 
-    filterTopicsList();
+    // filterTopicsList();
 
     // Filter lesson when user selects from the search results
     $("#searchWordsList tr").on("click", function () {
       var tr = $(this);
       $("#topicSelector").val(tr.find("td:nth-child(1)").html());
-      filterTopicsList();
+      // filterTopicsList();
       window.scrollTo(0, 0);
 
       // Hide search

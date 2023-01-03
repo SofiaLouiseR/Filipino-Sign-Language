@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block title %}Home | Filipino Sign Language{% endblock %} {% block content
 %}
 <div class="list-group list-group-flush">
-  <a href="#" class="list-group-item list-group-item-action"><b>Name:</b> {{ user.first_name }}</a>
-  <a href="#" class="list-group-item list-group-item-action"><b>Email:</b> {{ user.email }}</a>
-  <a href="#" class="list-group-item list-group-item-action"><b>Total Points:</b> {{ user.score }}</a>
+  <li class="list-group-item"><b>Name:</b> {{ user.first_name }}</li>
+  <li class="list-group-item"><b>Email:</b> {{ user.email }}</li>
+  <li class="list-group-item"><b>Total Points:</b> {{ user.score }}</li>
   <a href="/logout" class="list-group-item list-group-item-action">Log out</a>
 </div>
 

@@ -19,7 +19,7 @@
   </form>
 </div>
 
-<div id="sessionScoreContainer" class="card text-center position-absolute top-50 start-50 translate-middle" style="width:25rem;display:none;">
+<div id="sessionScoreContainer" class="card text-center position-absolute top-50 start-50 translate-middle" style="width:90%;display:none;">
   <div class="card-body">
     <h5 class="card-title">Quiz</h5>
     <p class="card-text">May 3 points ka na!</p>
@@ -58,14 +58,14 @@
   <div id="videoFeed">
     <!-- inalis ko muna <img src="url_for('video')"> -->
   </div>
-  <div class="w-100 d-flex justify-content-end gap-2">
+  <div class="w-100 d-flex justify-content-end gap-2" style="margin-bottom:7rem;">
     <button id="skipBtn" type="button" class="btn btn-secondary">Skip</button>
     <button id="startBtn" type="button" class="btn btn-primary">Practice</button>
   </div>
 </div>
 
 <script>
-  let words = [];
+  let words = [], currentSessionScore = 0;
 
   {% if words %}
   words = {{ words | tojson }};
@@ -123,15 +123,14 @@
         contentType: "application/json",
         dataType: 'json',
         success: function (data, textStatus) {
-          console.log(data);
-          try {
-            // Add class 'wrongAnswer' or 'correctAnswer'
-            $('#star' + quizItemNum + ' path').addClass(data.answer);
-
-            // check kung tapos na ang session
-          } catch (e) {
-            console.log(e);
+          console.log(data, textStatus);
+          if(data.score > 0) {
+            currentSessionScore += data.score;
+            $('#star' + quizItemNum + ' path').addClass('correctAnswer');
+          } else {
+            $('#star' + quizItemNum + ' path').addClass('wrongAnswer');
           }
+          showNextWord();
         }
       });
     });
@@ -152,8 +151,16 @@
 
     function endCurrentQuizSession() {
       currentWordIndex = 0, quizItemNum = 1;
+      var remarks = '';
       $('#videoContainer').hide();
+      if(currentSessionScore == 0) {
+        remarks = "Okay lang 'yan! Praktis lang. 😊"
+      } else if (currentSessionScore > 0) {
+        remarks = `May dagdag na ${currentSessionScore} points ka! 🎉`
+      }
+      $('#sessionScoreContainer p.card-text').html(remarks)
       $('#sessionScoreContainer').show();
+      currentSessionScore = 0;
       console.log("END");
     }
 
