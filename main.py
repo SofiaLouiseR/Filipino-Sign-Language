@@ -42,8 +42,8 @@ def video():
 
 @app.route("/learn")
 def learn():
-    from camera import Video
-    Video.__del__(Video())
+    # from camera import Video
+    # Video.__del__(Video())
     return render_template("learn.html")
 
 @app.route('/practice')
@@ -61,6 +61,7 @@ def predict():
     _word = request.form.get('word')
     from camera import Video
     print( pm.predict_sign(_word, 1,Video.get_cap()))
+    
     
     return ('', 204)  
 
