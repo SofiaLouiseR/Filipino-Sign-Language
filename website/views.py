@@ -1,16 +1,19 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, session
+from flask import Response
 from flask_login import login_required, current_user
 from .models import Note
 from sklearn.utils import shuffle
 from . import db
 import json
-
+import cv2
+global cam_stats
 views = Blueprint('views', __name__)
 
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
+    gen.__closure__
     if request.method == 'POST':
         note = request.form.get('note')
 
@@ -77,7 +80,8 @@ def process_qt_calculation():
     if request.method == "POST":
         # Dito yung code para i-check ang sagot
         # TYPE HERE
-
+        word =  request.get_json()
+        print('ito ung word..-' + str(word) )
         # Ito naman yung pagbalik sa HTML ng score, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
         score = 1 #change itong number kung anong score, 1 kung tama, 0 kung mali
         print(score)
@@ -88,6 +92,7 @@ def process_qt_calculation():
 @views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
+    
     return render_template("profile.html", user=current_user)
 
 
@@ -103,3 +108,23 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
+
+
+# -----------------------------------
+def gen(camera):
+    
+    while True:
+        frame=camera.get_frame() 
+        yield(b'--frame\r\n'
+         b'Content-Type:  image/jpeg\r\n\r\n' + frame +
+         b'\r\n\r\n')
+    
+
+
+@views.route('/video')
+
+def video():
+    
+    from camera import Video
+    return Response(gen(Video()),
+    mimetype='multipart/x-mixed-replace; boundary=frame')

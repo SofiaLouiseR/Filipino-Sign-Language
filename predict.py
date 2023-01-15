@@ -1,5 +1,6 @@
 
 import cv2 
+import os
 import mediapipe as mp
 import numpy as np
 from sqlalchemy import false
@@ -10,16 +11,39 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 
 
 
-threshold = 0.89 #ilalagay sa settings
+threshold = 0.8 #ilalagay sa settings
 mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
+actions = np.array(['def','def','def']) 
 predictions = []
 
-# actions = np.array(['ngayon','paalam','ulit']) 
-actions = np.array(['void_empty','no_sign','ngayon','paalam','ulit']) 
-# delete? PassBy na lang? 
-# Get Item sa local
 
+models_list = { 'gabi':'@20f_TE.h5','kahapon':'@20f_TE.h5','magandang':'@20f_TE.h5','ngayon':'@20f_TE.h5','umaga':'@20f_TE.h5', 
+            'bilog':'@20f_S.h5','bituin':'@20f_S.h5','parisukat':'@20f_S.h5','tatsulok':'@20f_S.h5',
+            'sino':'@20f_Q.h5','ano':'@20f_Q.h5','kailan':'@20f_Q.h5','saan':'@20f_Q.h5',
+            'maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
+            'babae':'@20f_F.h5','kamag-anak':'@20f_F.h5','lalake':'@20f_F.h5','matanda':'@20f_F.h5',
+            'hi hello':'@20f_CP.h5','mahal kita':'@20f_CP.h5','salamat':'@20f_CP.h5','ulit':'@20f_CP.h5',
+            'itim':'@20f_C.h5','kayumanggi':'@20f_C.h5','lila':'@20f_C.h5','puti':'@20f_C.h5',
+            'basa':'@20f_AV.h5','gusto':'@20f_AV.h5','hintay':'@20f_AV.h5','tingnan':'@20f_AV.h5'
+}
+action_list = {'TE' : (['gabi','kahapon','magandang','ngayon','umaga','void_empty','no_sign']),
+                'S' : (['bilog','bituin','parisukat','tatsulok','void_empty','no_sign']),
+                'Q' : (['sino','ano','kailan','saan','void_empty','no_sign']),
+                'P' : (['maynila','mundo','Pilipinas','void_empty','no_sign']),
+                'F' : (['babae','kamag-anak','lalake','matanda','void_empty','no_sign']),
+                'CP' : (['hi hello','mahal kita','salamat','ulit','void_empty','no_sign']),
+                'C' : (['itim','kayumanggi','lila','puti','void_empty','no_sign']),
+                'AV' : (['basa','gusto','hintay','tingnan','void_empty','no_sign'])
+}
+
+def load_actions(word_group_key):
+    actions = np.array(action_list.get(key)) 
+
+
+    
+    
+# sync this to the new model settings **
 model = Sequential()
 model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=( 30,1662)))
 model.add(Dropout(0.1))
@@ -33,13 +57,9 @@ model.add(Dense(32, activation='relu'))
 model.add(Dense(actions.shape[0], activation='softmax'))
 model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
-model.load_weights('models\@5 signs deploy.h5')
-def load_model(model_category):
-    switcher = {
-            0:'FSL\Model\common_1.h5',
-            1:'FSL\Model\common_2.h5'
-    }
-    return switcher.get(model_category," Model Not Available")
+def load_model(word):
+
+    model.load_weights(os.path.join (r'models\ ',models_list.get(word)))
 
 def mediapipe_detection(image, model):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
