@@ -6,14 +6,12 @@ from sklearn.utils import shuffle
 from . import db
 import json
 import cv2
-global cam_stats
 views = Blueprint('views', __name__)
 
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    gen.__closure__
     if request.method == 'POST':
         note = request.form.get('note')
 
@@ -92,7 +90,6 @@ def process_qt_calculation():
 @views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    
     return render_template("profile.html", user=current_user)
 
 
