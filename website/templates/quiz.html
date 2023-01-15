@@ -13,6 +13,7 @@
     <input type="text" name="topic" value="" hidden>
     <div class="list-group list-group-flush">
       <button type="button" class="list-group-item list-group-item-action">Pagbati</button>
+      <button type="button" class="list-group-item list-group-item-action">Panahon</button>
       <button type="button" class="list-group-item list-group-item-action">Bilang</button>
       <button type="button" class="list-group-item list-group-item-action">Pamilya</button>
     </div>
@@ -22,7 +23,7 @@
 <div id="sessionScoreContainer" class="card text-center position-absolute top-50 start-50 translate-middle" style="width:90%;display:none;">
   <div class="card-body">
     <h5 class="card-title">Quiz</h5>
-    <p class="card-text">May 3 points ka na!</p>
+    <p class="card-text"></p>
     <div class="w-100 d-flex justify-content-center gap-2">
       <button id="backToLesson" type="button" class="btn btn-secondary">Balik sa lesson</a>
       <button id="continueQuiz" type="button" class="btn btn-primary">Magpraktis pa</a>
@@ -41,17 +42,17 @@
     <svg id="star1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
       <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
       <path
-        d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="test1" />
+        d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
     </svg>
     <svg id="star2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
       <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
       <path
-        d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" />
+        d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
     </svg>
-    <svg id="star3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+    <svg id="star3" class="stars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
       <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
       <path
-        d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" />
+        d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
     </svg>
   </div>
   <h1 id="currentWord">Sign</h1>
@@ -67,10 +68,10 @@
 <script>
   let words = [], currentSessionScore = 0;
 
+  // Kung may WORDS galing sa /quiz ng views.py, iyon ang gagamitin na words
   {% if words %}
   words = {{ words | tojson }};
-  console.log(words);
-  console.log(typeof words);
+  console.log("All Words",words);
   {% endif %}
 
 
@@ -78,44 +79,54 @@
     // Select Quiz tab
     $('nav.fixed-bottom li:nth-child(2) a, nav.fixed-bottom li:nth-child(2) a svg path').addClass('active');
 
+    // Kapag pinindot ang isang topic, magsa-submit sa FORM POST /quiz kaya mag-a-update ang quiz.html para sa topic na iyon
     $("#topicSelectorContainer button").on("click", function () {
       let topic = $(this).text();
       $("#topicSelectorContainer input").val(topic);
       $("#topicSelectorContainer form").submit();
     });
+    
+    console.log("words.length: " + words.length);
 
-    var currentWordIndex = 0, currentSessionNum = 1, quizItemNum = 1, totalNumOfSessions = 1, numOfItemsForLastSession = 3;
-    $('#currentWord').text(`Sign "${words[currentWordIndex]}"`);
+    var currentWordIndex = 0, currentSessionIndex = 0;
 
-    console.log("words.length: " + words.length)
-    if (words.length > 0) { // Kung may laman ang words array
-      totalNumOfSessions = Math.floor(words.length/3); // ilang sessions ang tig-3 items
-      console.log(totalNumOfSessions)
-      numOfItemsForLastSession = words.length % 3;
-      if (numOfItemsForLastSession == 0) {
-        numOfItemsForLastSession = 3; // divisible by 3 kaya 3 pa rin sa last
+    // Get words in groups of 3, tig-3 lang per batch hanggang sa maubos. Kung less than 3 na ang natitira sa last batch, yung words na iyon ang ibibigay.
+    var currentWords = words.slice((currentSessionIndex * 3), (currentSessionIndex * 3) + 3);
+    
+    // Kung may laman ang words array, mag-display na ng word
+    if (words.length > 0) {
+      showNextWord();
+    }
+
+    function showNextWord() {
+      if (currentWords.length > 0) {
+        // Kung may laman ang currentWords array, ilagay mo ang word sa #currentWord
+        console.log(`Current Word is "${currentWords[currentWordIndex]}" from #${(currentWordIndex+1)} of: ${currentWords}`);
+        $('#currentWord').text(`Sign "${currentWords[currentWordIndex]}"`);
       } else {
-        totalNumOfSessions++; // may additional na isang session pero less than 3 words, retain pa rin value ng itemsForLastSession
+        endCurrentQuizSession();
       }
     }
 
     $("#skipBtn").on("click", function () {
-      // if last session na AND pasok pa sa num of items ng last session
-      if ((currentSessionNum == totalNumOfSessions && quizItemNum <= numOfItemsForLastSession) || quizItemNum <=3) {
+      // Kung hindi pa last word para sa current session, change Star color to wrongAnswer
+      if (currentWordIndex < (currentWords.length - 1)) {
+        currentWordIndex++; // increase para sa next word pero at the same time, para na rin tumama sa index ng #star nth child
         try {
-          $('#star' + quizItemNum + ' path').addClass('wrongAnswer');
+          $('#star' + currentWordIndex + ' path').addClass('wrongAnswer');
+          console.log('Skipped 1 word, marked as wrong');
           showNextWord();
-        } catch(e){
+        } catch (e) {
           console.log(e);
         }
-      } else {
+      } else { // Kung last word na para sa current session, diretsong end quiz na
         endCurrentQuizSession();
         return;
       }
     });
 
-    $("#startBtn").on("click", function () {
-      let arrayData = { "sampleData": "sample" };
+    $("#startBtn").on("click", function () { // TO DO:
+      let arrayData = { "currentWord": $('#currentWord').text() };
       $.ajax({
         type: "POST",
         url: "/checkAnswer",
@@ -126,43 +137,58 @@
           console.log(data, textStatus);
           if(data.score > 0) {
             currentSessionScore += data.score;
-            $('#star' + quizItemNum + ' path').addClass('correctAnswer');
+            currentWordIndex++;
+            $('#star' + currentWordIndex + ' path').addClass('correctAnswer');
           } else {
-            $('#star' + quizItemNum + ' path').addClass('wrongAnswer');
+            $('#star' + currentWordIndex + ' path').addClass('wrongAnswer');
           }
+          currentWordIndex++;
           showNextWord();
         }
       });
     });
 
-    function showNextWord() {
-      quizItemNum++;
-      currentWordIndex++;
-      if (quizItemNum > 3 || currentWordIndex > words.length) {
-        endCurrentQuizSession();
-      } else {
-        $('#currentWord').text(`Sign "${words[currentWordIndex]}"`);
-      }
-    }
-
     function recordScore() {
-      // kung tapos na ang session, record
+      // kung tapos na ang session, record currentSessionScore
     }
 
     function endCurrentQuizSession() {
-      currentWordIndex = 0, quizItemNum = 1;
       var remarks = '';
       $('#videoContainer').hide();
       if(currentSessionScore == 0) {
         remarks = "Okay lang 'yan! Praktis lang. 😊"
       } else if (currentSessionScore > 0) {
-        remarks = `May dagdag na ${currentSessionScore} points ka! 🎉`
+        remarks = `May dagdag na ${currentSessionScore} points ka! 🎉`;
+        // recordScore();
       }
       $('#sessionScoreContainer p.card-text').html(remarks)
       $('#sessionScoreContainer').show();
+      currentWordIndex = 0;
       currentSessionScore = 0;
-      console.log("END");
+      console.log("Current quiz session has ended.");
     }
+
+    $("#backToLesson").on("click", function () {
+      console.log("Balik sa Lesson Page");
+      window.location.href = "/"; // Balik sa Lesson page
+    });
+
+    $("#continueQuiz").on("click", function () {
+      currentSessionIndex++;
+      currentWords = words.slice((currentSessionIndex * 3), (currentSessionIndex * 3) + 3);
+
+      // Kung may natitirang words pa para mag-next session
+      if (currentWords.length > 0) {
+        $('.stars-paths').removeClass('correctAnswer').removeClass('wrongAnswer');
+        $('#videoContainer').show();
+        $('#sessionScoreContainer').hide();
+        console.log("Displaying next word for another quiz session...");
+        showNextWord();
+      } else { // Kung wala nang words, refresh page para makapili ulit ang user ng topic para sa quiz      
+        console.log("End of all quizzes for this topic, refreshing page for new quiz topic...");
+        window.location.href = "/quiz";
+      }
+    });
 
   });
 </script>
