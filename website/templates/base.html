@@ -25,26 +25,28 @@
 </head>
 
 {% if user.is_authenticated %}
-<body class="vh-100 d-flex flex-column justify-content-start">
+<body class="vh-100 d-flex flex-column align-items-center justify-content-start">
 {% else %}
-<body class="vh-100 d-flex flex-column justify-content-center">
+<body class="vh-100 d-flex flex-column align-items-center justify-content-center">
 {% endif %}
   {% if user.is_authenticated %}
-  <nav class="navbar navbar-expand-lg sticky-top" style="background-color: white;-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;">
+  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
       <div id="topNav" class="d-flex flex-row justify-content-between w-100">
         <a class="navbar-brand" href="#">Filipino Sign Language</a>
+        <div class="inline">
+          <div id="search" class="d-none w-100" role="search">
+            <input class="form-control" id="searchInput" type="text" placeholder="Search...">
+          </div>
         <button id="toggleSearch" class="btn d-flex align-items-center" type="button" onclick="
         if($('#search').hasClass('d-none')){
-            $('#topNav').removeClass('d-flex').addClass('d-none');
+                        $('#topNav').addClass('showSearch');
             $('#search').removeClass('d-none').addClass('d-flex');
             $('#search-results').show();
             $('#overlay').show();
           }
             else {
-              $('#topNav').removeClass('d-none').addClass('d-flex');
+                          $('#topNav').removeClass('showSearch');
               $('#search').removeClass('d-flex').addClass('d-none');
               $('#search-results').hide();
               $('#overlay').hide();
@@ -56,12 +58,9 @@
           </svg>
         </button>
       </div>
-      <div id="search" class="d-none w-100" role="search">
-        <input class="form-control" id="searchInput" type="text" placeholder="Search...">
       </div>
     </div>
-    <div class="search-results mt-2 w-100" id="search-results"
-      style="display: none; max-height: 60vh; overflow: scroll;">
+    <div class="search-results mt-2 w-100" id="search-results">
       <table class="table table-hover mb-2" id="searchWordsList">
         <tr>
           <td>Bilang</td>
@@ -90,9 +89,10 @@
   <script>
     $(document).ready(function () {
       function hideSearch() {
-        $('#topNav').removeClass('d-none').addClass('d-flex');
+        $('#search').addClass('d-none');
         $('#search').removeClass('d-flex').addClass('d-none');
         $('#search-results').hide();
+        $('#topNav').removeClass('showSearch');
         $('#overlay').hide();
       }
       $("#overlay").on("click", function () {
@@ -124,7 +124,7 @@
     </div>
   </nav> -->
 
-  <div class="container mt-2">
+  <div class="container h-100" style="position: fixed; top: 4rem!important; width: 100%;">
     {% block content %} {% endblock %}
   </div>
 
