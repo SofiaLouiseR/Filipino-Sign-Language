@@ -133,7 +133,8 @@
     });
 
     $("#startBtn").on("click", function () { // TO DO:
-      let arrayData = { "currentWord": $('#currentWord').text() };
+      // let arrayData = { "currentWord": $('#currentWord').text() };
+      let arrayData = { "currentWord": currentWords[currentWordIndex] };
       $.ajax({
         type: "POST",
         url: "/checkAnswer",

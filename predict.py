@@ -6,6 +6,7 @@ import numpy as np
 from sqlalchemy import false
 import tensorflow as tf  
 import time
+from camera import cap
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 
@@ -15,7 +16,7 @@ threshold = 0.8 #ilalagay sa settings
 mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
 colors = [(245,117,16), (117,245,16), (16,117,245),(211,117,16), (123,245,16), (117,245,16)]
-actions = np.array(['def','def','def','def','def']) 
+actions = np.array(['def','def','def','def','def','def']) 
 predictions = []
 
 
@@ -64,6 +65,7 @@ def load_actions(word):
     actions = np.array(action_list.get(WG_key.get(word))) 
 
 def load_model(word):
+    print('model ay: ' + models_list.get(word))
     model.load_weights(os.path.join (r'models',models_list.get(word)))
 
 
@@ -126,10 +128,14 @@ def open_camera(cap):
             cv2.destroyAllWindows()
             break
 
-def predict_sign(word, cap):
+def predict_sign(word):
     print (word)
-    load_actions(word)
+    # load_actions(word)
+    actions = np.array(action_list.get(WG_key.get(word))) 
+    print(actions)
+
     load_model(word)
+    
     sequence = []  #need iclear?
     predicted = False
     a = True
@@ -139,7 +145,7 @@ def predict_sign(word, cap):
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while a and frame_num <200: #Pwede adjust frame_num to achieve 15 sec na waiting
             frame_num += 1
-            print (frame_num)
+            # print (frame_num)
             # Read feed
             ret, frame = cap.read()
             # Make detections
@@ -149,9 +155,9 @@ def predict_sign(word, cap):
             # 2. Prediction logic
             keypoints = extract_keypoints(results)
             sequence.append(keypoints)
-            sequence = sequence[-30:]
+            sequence = sequence[-20:]
             
-            if len(sequence) == 30:
+            if len(sequence) == 20:
                 res = model.predict(np.expand_dims(sequence, axis=0))[0]
                 # print(actions[np.argmax(res)])
                 predictions.append(np.argmax(res))        
@@ -163,11 +169,11 @@ def predict_sign(word, cap):
                             predicted = True
                             print(predicted)
                             break 
-            cv2.imshow('OpenCV Feed', frame) #image > frame
+            # cv2.imshow('OpenCV Feed', frame) #image > frame
             
             # Break gracefully
-            if cv2.waitKey(10) & 0xFF == ord('q'):
-                break
+            # if cv2.waitKey(10) & 0xFF == ord('q'):
+            #     break
         # cap.release()
         # cv2.destroyAllWindows()
     end = time.time()       

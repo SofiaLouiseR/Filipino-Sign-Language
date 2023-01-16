@@ -79,13 +79,20 @@ def process_qt_calculation():
     if request.method == "POST":
         # Dito yung code para i-check ang sagot
         # TYPE HERE
-        word =  request.get_json()
-        print('ito ung word..-' + str(word) )
+        # word_case =  request.get_json()
+        # print('json file..-' + str (word_case))
+        # word = word_case['currentWord']
+        # print('ang word ay: ' + word)
+
         # Ito naman yung pagbalik sa HTML ng score, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
-        if(pm.predict_sign(word)):
+        # if(pm.predict_sign(word, video().Video.get_cap())):
+        if(pm.predict_sign('salamat')):
+            
             score = 1
+            print('tama predict')
         else:
             score =0
+            print('mali predict')
         score = 1 #change itong number kung anong score, 1 kung tama, 0 kung mali
         print(score)
     results = {'processed': 'true', 'score': score}
