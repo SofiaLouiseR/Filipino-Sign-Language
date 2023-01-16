@@ -3,5 +3,5 @@ Flask-SQLAlchemy
 flask-login
 scikit-learn
 
-pip install opencv-python
+opencv-python
 # !pip3 install mediapipe --user
