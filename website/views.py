@@ -5,7 +5,8 @@ from .models import Note
 from sklearn.utils import shuffle
 from . import db
 import json
-import cv2
+# import cv2
+import predict as pm
 views = Blueprint('views', __name__)
 
 
@@ -81,6 +82,10 @@ def process_qt_calculation():
         word =  request.get_json()
         print('ito ung word..-' + str(word) )
         # Ito naman yung pagbalik sa HTML ng score, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
+        if(pm.predict_sign(word)):
+            score = 1
+        else:
+            score =0
         score = 1 #change itong number kung anong score, 1 kung tama, 0 kung mali
         print(score)
     results = {'processed': 'true', 'score': score}

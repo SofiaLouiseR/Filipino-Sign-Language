@@ -14,7 +14,8 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 threshold = 0.8 #ilalagay sa settings
 mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
-actions = np.array(['def','def','def']) 
+colors = [(245,117,16), (117,245,16), (16,117,245),(211,117,16), (123,245,16), (117,245,16)]
+actions = np.array(['def','def','def','def','def']) 
 predictions = []
 
 
@@ -27,6 +28,7 @@ models_list = { 'gabi':'@20f_TE.h5','kahapon':'@20f_TE.h5','magandang':'@20f_TE.
             'itim':'@20f_C.h5','kayumanggi':'@20f_C.h5','lila':'@20f_C.h5','puti':'@20f_C.h5',
             'basa':'@20f_AV.h5','gusto':'@20f_AV.h5','hintay':'@20f_AV.h5','tingnan':'@20f_AV.h5'
 }
+
 action_list = {'TE' : (['gabi','kahapon','magandang','ngayon','umaga','void_empty','no_sign']),
                 'S' : (['bilog','bituin','parisukat','tatsulok','void_empty','no_sign']),
                 'Q' : (['sino','ano','kailan','saan','void_empty','no_sign']),
@@ -37,29 +39,34 @@ action_list = {'TE' : (['gabi','kahapon','magandang','ngayon','umaga','void_empt
                 'AV' : (['basa','gusto','hintay','tingnan','void_empty','no_sign'])
 }
 
-def load_actions(word_group_key):
-    actions = np.array(action_list.get(key)) 
+WG_key = { 'gabi':'TE','kahapon':'TE','TE':'TE','ngayon':'TE','umaga':'TE', 
+            'bilog':'S','bituin':'S','parisukat':'S','tatsulok':'S',
+            'sino':'Q','ano':'Q','kailan':'Q','saan':'Q',
+            'maynila':'P','mundo':'P','Pilipinas':'P',
+            'babae':'F','kamag-anak':'F','lalake':'F','matanda':'F',
+            'hi hello':'CP','mahal kita':'CP','salamat':'CP','ulit':'CP',
+            'itim':'C','kayumanggi':'C','lila':'C','puti':'C',
+            'basa':'AV','gusto':'AV','hintay':'AV','tingnan':'AV'
+}
 
 
-    
-    
-# sync this to the new model settings **
 model = Sequential()
-model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=( 30,1662)))
-model.add(Dropout(0.1))
+model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=( 20,1662)))
 model.add(LSTM(128, return_sequences=True, activation='relu'))
-model.add(Dropout(0.1))
 model.add(LSTM(64, return_sequences=False, activation='relu'))
-model.add(Dropout(0.1))
 model.add(Dense(64, activation='relu'))
-model.add(Dropout(0.1))
 model.add(Dense(32, activation='relu'))
 model.add(Dense(actions.shape[0], activation='softmax'))
+    
 model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
-def load_model(word):
+def load_actions(word):
+    actions = np.array(action_list.get(WG_key.get(word))) 
 
-    model.load_weights(os.path.join (r'models\ ',models_list.get(word)))
+def load_model(word):
+    model.load_weights(os.path.join (r'models',models_list.get(word)))
+
+
 
 def mediapipe_detection(image, model):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
@@ -91,8 +98,7 @@ def draw_styled_landmarks(image, results):
                              mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=1)
                              )
 
-                            
-
+                        
 def extract_keypoints(results):
     pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
     face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
@@ -101,13 +107,12 @@ def extract_keypoints(results):
     return np.concatenate([pose, face, lh, rh])
 
 
-colors = [(245,117,16), (117,245,16), (16,117,245)]
+
 def prob_viz(res, actions, input_frame, colors):
     output_frame = input_frame.copy()
     for num, prob in enumerate(res):
         cv2.rectangle(output_frame, (0,60+num*40), (int(prob*100), 90+num*40), colors[num], -1)
-        cv2.putText(output_frame, actions[num], (0, 85+num*40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv2.LINE_AA)
-        
+        cv2.putText(output_frame, actions[num], (0, 85+num*40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv2.LINE_AA)    
     return output_frame
 
 def open_camera(cap):
@@ -121,11 +126,11 @@ def open_camera(cap):
             cv2.destroyAllWindows()
             break
 
-def predict_sign(sign, model_category, cap):
-    print (sign)
-    load_model(model_category)
+def predict_sign(word, cap):
+    print (word)
+    load_actions(word)
+    load_model(word)
     sequence = []  #need iclear?
-    sentence = []
     predicted = False
     a = True
     frame_num = 0
@@ -154,7 +159,7 @@ def predict_sign(sign, model_category, cap):
                 if np.unique(predictions[-10:])[0]==np.argmax(res): 
                     if res[np.argmax(res)] > threshold: 
                         print(actions[np.argmax(res)])
-                        if actions[np.argmax(res)] == sign:
+                        if actions[np.argmax(res)] == word:
                             predicted = True
                             print(predicted)
                             break 
