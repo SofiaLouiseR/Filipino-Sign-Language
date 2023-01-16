@@ -1,4 +1,5 @@
 import cv2
+global cap 
 cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 class Video(object):
     def __init__(self):
@@ -9,7 +10,8 @@ class Video(object):
             self.cap.release()
             self.cap.stream.release()
         except:
-            print('no cap yet')
+            print('') #no cap yet
+
     def get_frame(self):
         ret,frame=cap.read()
         ret,jpg=cv2.imencode('.jpg',frame)

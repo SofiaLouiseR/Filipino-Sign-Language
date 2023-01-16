@@ -5,3 +5,11 @@ scikit-learn
 
 opencv-python
 # !pip3 install mediapipe --user
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+# !pip install opencv-python
+# !pip install mediapipe --user
+# !pip install matplotlib 
+# !pip3 install mediapipe --user
+# !pip install tensorflow==2.10.0 
+# !pip install tensorflow-gpu==2.10.0 --user
+# !pip3 install -U scikit-learn
