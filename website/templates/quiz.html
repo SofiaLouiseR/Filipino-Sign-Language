@@ -143,15 +143,27 @@
         dataType: 'json',
         success: function (data, textStatus) {
           console.log(data, textStatus);
-          if(data.score > 0) {
-            currentSessionScore += data.score;
-            currentWordIndex++;
-            $('#star' + currentWordIndex + ' path').addClass('correctAnswer');
-          } else {
-            $('#star' + currentWordIndex + ' path').addClass('wrongAnswer');
+          currentSessionScore += data.score; // Save score
+
+          // Kung hindi pa ito ang last word for this session
+          if (currentWordIndex < (currentWords.length - 1)) {
+            currentWordIndex++; // increase para sa next word pero at the same time, para na rin tumama sa index ng #star nth child
+            try {
+              if (data.score > 0) {
+                $('#star' + currentWordIndex + ' path').addClass('correctAnswer');
+                console.log('Done checking 1 word, marked as correct');
+              } else {
+                $('#star' + currentWordIndex + ' path').addClass('wrongAnswer');
+                console.log('Skipped 1 word, marked as wrong');
+              }
+              showNextWord();
+            } catch (e) {
+              console.log(e);
+            }
+          } else { // Kung last word na para sa current session, diretsong end quiz na
+            endCurrentQuizSession();
+            return;
           }
-          currentWordIndex++;
-          showNextWord();
         }
       });
     });
