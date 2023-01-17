@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, session
 from flask import Response
 from flask_login import login_required, current_user
-from .models import Note
+from models import Note
 from sklearn.utils import shuffle
 from . import db
 import json
@@ -79,20 +79,20 @@ def process_qt_calculation():
     if request.method == "POST":
         # Dito yung code para i-check ang sagot
         # TYPE HERE
-        # word_case =  request.get_json()
-        # print('json file..-' + str (word_case))
-        # word = word_case['currentWord']
-        # print('ang word ay: ' + word)
+        word_case =  request.get_json()
+        print('json file..-' + str (word_case))
+        word = word_case['currentWord']
+        print('ang word ay: ' + word)
 
         # Ito naman yung pagbalik sa HTML ng score, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
         # if(pm.predict_sign(word, video().Video.get_cap())):
-        if(pm.predict_sign('salamat')):
+        # if(pm.predict_sign('salamat')):
             
-            score = 1
-            print('tama predict')
-        else:
-            score =0
-            print('mali predict')
+        #     score = 1
+        #     print('tama predict')
+        # else:
+        #     score =0
+        #     print('mali predict')
         score = 1 #change itong number kung anong score, 1 kung tama, 0 kung mali
         print(score)
     results = {'processed': 'true', 'score': score}
