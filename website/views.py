@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, session
 from flask import Response
 from flask_login import login_required, current_user
-from models import Note
+from .models import Note
 from sklearn.utils import shuffle
 from . import db
 import json
