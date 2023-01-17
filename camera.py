@@ -1,6 +1,7 @@
 import cv2
 global cap 
-cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+# cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(0)
 class Video(object):
     def __init__(self):
         # self.cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
@@ -26,4 +27,5 @@ class Video(object):
         return jpg.tobytes()
     def get_cap():
         return cap
+
 
