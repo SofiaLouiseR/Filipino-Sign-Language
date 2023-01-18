@@ -87,7 +87,6 @@ def process_qt_calculation():
         # Ito naman yung pagbalik sa HTML ng score, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
         # if(pm.predict_sign(word, video().Video.get_cap())):
         # if(pm.predict_sign('salamat')):
-            
         #     score = 1
         #     print('tama predict')
         # else:
