@@ -63,26 +63,167 @@
     <div class="search-results mt-2 w-100" id="search-results">
       <table class="table table-hover mb-2" id="searchWordsList">
         <tr>
-          <td>Bilang</td>
-          <td>1</td>
-          <td>isa/one</td>
+          <td>Panghalip Pananong</td>
+          <td>ano</td>
+          <td>ano, what</td>
         </tr>
         <tr>
           <td>Pamilya</td>
-          <td>pamilya</td>
-          <td>family</td>
+          <td>babae</td>
+          <td>babae, female</td>
+        </tr>
+        <tr>
+          <td>Pandiwa</td>
+          <td>basa</td>
+          <td>basa, read</td>
+        </tr>
+        <tr>
+          <td>Hugis</td>
+          <td>bilog</td>
+          <td>bilog, circle</td>
+        </tr>
+        <tr>
+          <td>Hugis</td>
+          <td>bituin</td>
+          <td>bituin, star</td>
+        </tr>
+        <tr>
+          <td>Panahon / Oras</td>
+          <td>gabi</td>
+          <td>gabi, evening</td>
+        </tr>
+        <tr>
+          <td>Pandiwa</td>
+          <td>gusto</td>
+          <td>gusto, want</td>
+        </tr>
+        <tr>
+          <td>Madalas Sabihin</td>
+          <td>hi/hello</td>
+          <td>hi/hello, hi/hello</td>
+        </tr>
+        <tr>
+          <td>Pandiwa</td>
+          <td>hintay</td>
+          <td>hintay, Wait</td>
+        </tr>
+        <tr>
+          <td>Kulay</td>
+          <td>itim</td>
+          <td>itim, black</td>
+        </tr>
+        <tr>
+          <td>Panahon / Oras</td>
+          <td>kahapon</td>
+          <td>kahapon, yesterday</td>
+        </tr>
+        <tr>
+          <td>Panghalip Pananong</td>
+          <td>kailan</td>
+          <td>kailan, when</td>
         </tr>
         <tr>
           <td>Pamilya</td>
-          <td>mama</td>
-          <td>mother/nanay/ina</td>
+          <td>kamag-anak</td>
+          <td>kamag-anak, relative</td>
         </tr>
         <tr>
-          <td>Pagbati</td>
-          <td>Hello</td>
-          <td>Hi</td>
+          <td>Kulay</td>
+          <td>kayumanggi</td>
+          <td>kayumanggi, brown</td>
+        </tr>
+        <tr>
+          <td>Pamilya</td>
+          <td>lalake</td>
+          <td>lalake, male</td>
+        </tr>
+        <tr>
+          <td>Panahon / Oras</td>
+          <td>magandang</td>
+          <td>magandang, good</td>
+        </tr>
+        <tr>
+          <td>Madalas Sabihin</td>
+          <td>mahal kita</td>
+          <td>mahal kita, I love you</td>
+        </tr>
+        <tr>
+          <td>Pamilya</td>
+          <td>matanda</td>
+          <td>matanda, adult</td>
+        </tr>
+        <tr>
+          <td>Lugar</td>
+          <td>Maynila</td>
+          <td>Maynila, manila</td>
+        </tr>
+        <tr>
+          <td>Lugar</td>
+          <td>mundo</td>
+          <td>mundo, world</td>
+        </tr>
+        <tr>
+          <td>Panahon / Oras</td>
+          <td>ngayon</td>
+          <td>ngayon, now/today</td>
+        </tr>
+        <tr>
+          <td>Hugis</td>
+          <td>parisukat</td>
+          <td>parisukat, square</td>
+        </tr>
+        <tr>
+          <td>Lugar</td>
+          <td>Pilipinas</td>
+          <td>Pilipinas, Philippines</td>
+        </tr>
+        <tr>
+          <td>Kulay</td>
+          <td>puti</td>
+          <td>puti, white</td>
+        </tr>
+        <tr>
+          <td>Panghalip Pananong</td>
+          <td>saan</td>
+          <td>saan, where</td>
+        </tr>
+        <tr>
+          <td>Madalas Sabihin</td>
+          <td>salamat</td>
+          <td>salamat, thanks</td>
+        </tr>
+        <tr>
+          <td>Panghalip Pananong</td>
+          <td>sino</td>
+          <td>sino, who</td>
+        </tr>
+        <tr>
+          <td>Hugis</td>
+          <td>tatsulok</td>
+          <td>tatsulok, triangle</td>
+        </tr>
+        <tr>
+          <td>Pandiwa</td>
+          <td>tingnan</td>
+          <td>tingnan, see</td>
+        </tr>
+        <tr>
+          <td>Madalas Sabihin</td>
+          <td>ulit</td>
+          <td>ulit, again</td>
+        </tr>
+        <tr>
+          <td>Panahon / Oras</td>
+          <td>umaga</td>
+          <td>umaga, morning</td>
+        </tr>
+        <tr>
+          <td>Kulay</td>
+          <td>violet</td>
+          <td>violet, violet</td>
         </tr>
       </table>
+      <span id="noResults" style="display: none;">Wala ang iyong hinahanap</span>
     </div>
   </nav>
   <div id="overlay"></div>
@@ -100,9 +241,17 @@
       });
       $("#searchInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        $("#searchWordsList tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        var filteredRows = $("#searchWordsList tr").filter(function () {
+          let results = $(this).text().toLowerCase().indexOf(value) > -1;
+          $(this).toggle(results)
+          return results;
         });
+        console.log("len: " + filteredRows.length)
+        if (filteredRows.length === 0) {
+          $('#noResults').show();
+        } else {
+          $('#noResults').hide();
+        }
       });
     });
   </script>

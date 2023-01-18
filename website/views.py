@@ -68,10 +68,22 @@ def quiz():
 @login_required
 def getWords(topic):
     match topic:
-        case "Panahon":
-            return shuffle(["ngayon","gabi","magandang","umaga","walang hanggan","magpakailanman","hinaharap","kasalukuyan","kahapon","bukas","ngayong araw","araw-araw","madalas","kamakailan","mamaya","huli na","maaga","malapit na","paglubog ng araw","pagsikat ng araw","tanghali","hapon","minsan","dalawang beses","tatlong beses","segundo","minuto","oras","isang","dalawang","tatlong"])
+        case "Hugis":
+            return shuffle(["bituin", "parisukat", "bilog", "tatsulok"])
+        case "Kulay":
+            return shuffle(["itim", "puti", "kayumanggi", "violet"])
+        case "Lugar":
+            return shuffle(["mundo", "Maynila", "Pilipinas"])
+        case "Madalas Sabihin":
+            return shuffle(["ulit", "mahal kita", "hi/hello", "salamat"])
         case "Pamilya":
-            return shuffle(["pamilya","mama","lola"])
+            return shuffle(["babae", "lalake", "kamag-anak", "matanda"])
+        case "Panahon / Oras":
+            return shuffle(["ngayon", "gabi", "magandang", "umaga", "kahapon"])
+        case "Pandiwa":
+            return shuffle(["hintay", "gusto", "tingnan", "basa"])
+        case "Panghalip Pananong":
+            return shuffle(["sino", "ano", "kailan", "saan"])
 
 
 @views.route('/checkAnswer', methods=['POST', 'GET'])
