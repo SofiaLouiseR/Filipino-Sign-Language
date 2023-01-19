@@ -12,7 +12,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 
 
 
-threshold = 0.8 #ilalagay sa settings
+threshold = 0.9 #ilalagay sa settings
 mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
 colors = [(245,117,16), (117,245,16), (16,117,245),(211,117,16), (123,245,16), (117,245,16)]
@@ -21,7 +21,7 @@ predictions = []
 
 
 models_list = { 'gabi':'@20f_TE1.h5','kahapon':'@20f_TE1.h5','magandang':'@20f_TE2.h5','ngayon':'@20f_TE1.h5','umaga':'@20f_TE2.h5', 
-            'bilog':'@20f_S1.h5','bituin':'@20f_S1.h5','parisukat':'@20f_S1.h5','tatsulok':'@20f_S2.h5',
+            'bilog':'@20f_S1.h5','bituin':'@20f_S1.h5','parisukat':'@20f_S1.h5','tatsulok':'@20f_P.h5',
             'sino':'@20f_Q1.h5','ano':'@20f_Q2.h5','kailan':'@20f_Q1.h5','saan':'@20f_Q1.h5',
             'maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
             'babae':'@20f_F.h5','kamag-anak':'@20f_F.h5','lalake':'@20f_F.h5','matanda':'@20f_F.h5',
@@ -36,7 +36,7 @@ action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_
                 'S2' : (['bilog','bituin','itim','tatsulok','void_empty','no_sign']),
                 'Q1' : (['sino','ano','kailan','saan','void_empty','no_sign']),
                 'Q2' : (['itim','ano','kailan','saan','void_empty','no_sign']),
-                'P' : (['maynila','mundo','Pilipinas','void_empty','no_sign']),
+                'P' : (['maynila','mundo','Pilipinas','tatsulok','void_empty','no_sign']),
                 'F' : (['babae','kamag-anak','lalake','matanda','void_empty','no_sign']),
                 'CP' : (['hi hello','mahal kita','salamat','ulit','void_empty','no_sign']),
                 'C' : (['itim','kayumanggi','lila','puti','void_empty','no_sign']),
@@ -44,7 +44,7 @@ action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_
 }
 
 WG_key = { 'gabi':'TE1','kahapon':'TE1','magandang':'TE2','ngayon':'TE1','umaga':'TE2', 
-            'bilog':'S1','bituin':'S1','parisukat':'S1','tatsulok':'S2',
+            'bilog':'S1','bituin':'S1','parisukat':'S1','tatsulok':'P',
             'sino':'Q1','ano':'Q2','kailan':'Q1','saan':'Q1',
             'maynila':'P','mundo':'P','Pilipinas':'P',
             'babae':'F','kamag-anak':'F','lalake':'F','matanda':'F',
