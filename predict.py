@@ -136,21 +136,21 @@ def open_camera(cap):
             break
 
 def predict_sign(word):
-    print (word)
     # load_actions(word)
     actions = np.array(action_list.get(WG_key.get(word))) 
     print(actions)
 
     load_model(word)
     
-    sequence = []  #need iclear?
+    sequence = []
+    sentence = []
+    predictions = []
+
     predicted = False
-    a = True
     frame_num = 0
-    start = time.time()
-    print("Start Time")
+    
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        while a and frame_num <200: #Pwede adjust frame_num to achieve 15 sec na waiting
+        while True and frame_num <200: #Pwede adjust frame_num to achieve 15 sec na waiting
             frame_num += 1
             # print (frame_num)
             # Read feed
@@ -164,18 +164,48 @@ def predict_sign(word):
             sequence.append(keypoints)
             sequence = sequence[-20:]
             
+            # if len(sequence) == 20:
+            #     res = model.predict(np.expand_dims(sequence, axis=0))[0]
+            #     # print(actions[np.argmax(res)])
+            #     predictions.append(np.argmax(res))        
+            # #3. Viz logic
+            #     if np.unique(predictions[-10:])[0]==np.argmax(res): 
+            #         if res[np.argmax(res)] > threshold: 
+            #             print(actions[np.argmax(res)])
+            #             if actions[np.argmax(res)] == word:
+            #                 predicted = True
+            #                 print(predicted)
+            #                 break 
+
             if len(sequence) == 20:
+                
                 res = model.predict(np.expand_dims(sequence, axis=0))[0]
-                # print(actions[np.argmax(res)])
-                predictions.append(np.argmax(res))        
+                print(actions[np.argmax(res)])
+                predictions.append(np.argmax(res))
             #3. Viz logic
                 if np.unique(predictions[-10:])[0]==np.argmax(res): 
                     if res[np.argmax(res)] > threshold: 
-                        print(actions[np.argmax(res)])
-                        if actions[np.argmax(res)] == word:
-                            predicted = True
-                            print(predicted)
-                            break 
+                        
+                        if len(sentence) > 0: 
+                            if actions[np.argmax(res)] != sentence[-1]:
+                                sentence.append(actions[np.argmax(res)])
+                        else:
+                            sentence.append(actions[np.argmax(res)])
+
+                if len(sentence) > 5: 
+                    sentence = sentence[-5:]
+                print(sentence)
+                print(sentence[-1])
+                print(word)
+                if sentence[-1] == word:
+                    predicted = True
+                    print(predicted)
+                    break 
+
+
+
+
+
             # cv2.imshow('OpenCV Feed', frame) #image > frame
             
             # Break gracefully
@@ -183,6 +213,5 @@ def predict_sign(word):
             #     break
         # cap.release()
         # cv2.destroyAllWindows()
-    end = time.time()       
-    print('time elapse: '+ str(end - start))
+    
     return predicted

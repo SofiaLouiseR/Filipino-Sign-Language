@@ -71,7 +71,7 @@ def getWords(topic):
         case "Hugis":
             return shuffle(["bituin", "parisukat", "bilog", "tatsulok"])
         case "Kulay":
-            return shuffle(["itim", "puti", "kayumanggi", "violet"])
+            return shuffle(["itim", "puti", "kayumanggi", "lila"])
         case "Lugar":
             return shuffle(["mundo", "Maynila", "Pilipinas"])
         case "Madalas Sabihin":
