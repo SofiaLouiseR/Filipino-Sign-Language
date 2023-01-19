@@ -75,7 +75,7 @@ def getWords(topic):
         case "Lugar":
             return shuffle(["mundo", "Maynila", "Pilipinas"])
         case "Madalas Sabihin":
-            return shuffle(["ulit", "mahal kita", "hi hello", "salamat"])
+            return shuffle(["ulit", "mahal kita", "hi o hello", "salamat"])
         case "Pamilya":
             return shuffle(["babae", "lalake", "kamag-anak", "matanda"])
         case "Panahon / Oras":
