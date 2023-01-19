@@ -40,7 +40,7 @@ action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_
                 'F1' : (['hi o hello','kamag-anak','lalake','matanda','void_empty','no_sign']),
                 'F2' : (['babae','parisukat','mahal kita','bilog','void_empty','no_sign']),
                 'F3' : (['matanda','parisukat','kamag-anak','saan','void_empty','no_sign']) ,
-                'CP1' : (['hi hello','mahal kita','salamat','ulit','void_empty','no_sign']),
+                'CP1' : (['hi o hello','mahal kita','salamat','ulit','void_empty','no_sign']),
                 'CP2' : (['kayumanggi','puti','salamat','ulit','void_empty','no_sign']),
                 'C1' : (['itim','kayumanggi','lila','puti','void_empty','no_sign']),
                 'AV1' : (['basa','gusto','hintay','tingnan','void_empty','no_sign']),
