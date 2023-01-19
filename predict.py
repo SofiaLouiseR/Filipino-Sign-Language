@@ -24,10 +24,10 @@ models_list = { 'gabi':'@20f_TE1.h5','kahapon':'@20f_TE1.h5','magandang':'@20f_T
             'bilog':'@20f_S1.h5','bituin':'@20f_S1.h5','parisukat':'@20f_S1.h5','tatsulok':'@20f_P.h5',
             'sino':'@20f_Q1.h5','ano':'@20f_Q2.h5','kailan':'@20f_Q1.h5','saan':'@20f_Q1.h5',
             'maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
-            'babae':'@20f_F.h5','kamag-anak':'@20f_F.h5','lalake':'@20f_F.h5','matanda':'@20f_F.h5',
-            'hi hello':'@20f_CP.h5','mahal kita':'@20f_CP.h5','salamat':'@20f_CP.h5','ulit':'@20f_CP.h5',
-            'itim':'@20f_C.h5','kayumanggi':'@20f_C.h5','lila':'@20f_C.h5','puti':'@20f_C.h5',
-            'basa':'@20f_AV.h5','gusto':'@20f_AV.h5','hintay':'@20f_AV.h5','tingnan':'@20f_AV.h5'
+            'babae':'@20f_F2.h5','kamag-anak':'@20f_F1.h5','lalake':'@20f_F1.h5','matanda':'@20f_F3.h5',
+            'hi o hello':'@20f_F1.h5','mahal kita':'@20f_F2.h5','salamat':'@20f_CP1.h5','ulit':'@20f_CP2.h5',
+            'itim':'@20f_Q2.h5','kayumanggi':'@20f_C.h5','lila':'@20f_C.h5','puti':'@20f_C.h5',
+            'basa':'@20f_AV1.h5','gusto':'@20f_AV1.h5','hintay':'@20f_AV1.h5','tingnan':'@20f_AV2.h5'
 }
 
 action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_sign']),
@@ -37,20 +37,24 @@ action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_
                 'Q1' : (['sino','ano','kailan','saan','void_empty','no_sign']),
                 'Q2' : (['itim','ano','kailan','saan','void_empty','no_sign']),
                 'P' : (['maynila','mundo','Pilipinas','tatsulok','void_empty','no_sign']),
-                'F' : (['babae','kamag-anak','lalake','matanda','void_empty','no_sign']),
-                'CP' : (['hi hello','mahal kita','salamat','ulit','void_empty','no_sign']),
-                'C' : (['itim','kayumanggi','lila','puti','void_empty','no_sign']),
-                'AV' : (['basa','gusto','hintay','tingnan','void_empty','no_sign'])
+                'F1' : (['hi o hello','kamag-anak','lalake','matanda','void_empty','no_sign']),
+                'F2' : (['babae','parisukat','mahal kita','bilog','void_empty','no_sign']),
+                'F3' : (['matanda','parisukat','kamag-anak','saan','void_empty','no_sign']) ,
+                'CP1' : (['hi hello','mahal kita','salamat','ulit','void_empty','no_sign']),
+                'CP2' : (['kayumanggi','puti','salamat','ulit','void_empty','no_sign']),
+                'C1' : (['itim','kayumanggi','lila','puti','void_empty','no_sign']),
+                'AV1' : (['basa','gusto','hintay','tingnan','void_empty','no_sign']),
+                'AV2' : (['basa','gusto','mundo','tingnan','void_empty','no_sign'])
 }
 
 WG_key = { 'gabi':'TE1','kahapon':'TE1','magandang':'TE2','ngayon':'TE1','umaga':'TE2', 
             'bilog':'S1','bituin':'S1','parisukat':'S1','tatsulok':'P',
             'sino':'Q1','ano':'Q2','kailan':'Q1','saan':'Q1',
             'maynila':'P','mundo':'P','Pilipinas':'P',
-            'babae':'F','kamag-anak':'F','lalake':'F','matanda':'F',
-            'hi hello':'CP','mahal kita':'CP','salamat':'CP','ulit':'CP',
-            'itim':'C','kayumanggi':'C','lila':'C','puti':'C',
-            'basa':'AV','gusto':'AV','hintay':'AV','tingnan':'AV'
+            'babae':'F2','kamag-anak':'F1','lalake':'F1','matanda':'F3',
+            'hi o hello':'F1','mahal kita':'F2','salamat':'CP1','ulit':'CP2',
+            'itim':'Q2','kayumanggi':'C1','lila':'C1','puti':'C1',
+            'basa':'AV1','gusto':'AV1','hintay':'AV1','tingnan':'AV2'
 }
 
 
