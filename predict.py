@@ -20,9 +20,9 @@ actions = np.array(['def','def','def','def','def','def'])
 predictions = []
 
 
-models_list = { 'gabi':'@20f_TE.h5','kahapon':'@20f_TE.h5','magandang':'@20f_TE.h5','ngayon':'@20f_TE.h5','umaga':'@20f_TE.h5', 
-            'bilog':'@20f_S.h5','bituin':'@20f_S.h5','parisukat':'@20f_S.h5','tatsulok':'@20f_S.h5',
-            'sino':'@20f_Q.h5','ano':'@20f_Q.h5','kailan':'@20f_Q.h5','saan':'@20f_Q.h5',
+models_list = { 'gabi':'@20f_TE1.h5','kahapon':'@20f_TE1.h5','magandang':'@20f_TE2.h5','ngayon':'@20f_TE1.h5','umaga':'@20f_TE2.h5', 
+            'bilog':'@20f_S1.h5','bituin':'@20f_S1.h5','parisukat':'@20f_S1.h5','tatsulok':'@20f_S2.h5',
+            'sino':'@20f_Q1.h5','ano':'@20f_Q2.h5','kailan':'@20f_Q1.h5','saan':'@20f_Q1.h5',
             'maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
             'babae':'@20f_F.h5','kamag-anak':'@20f_F.h5','lalake':'@20f_F.h5','matanda':'@20f_F.h5',
             'hi hello':'@20f_CP.h5','mahal kita':'@20f_CP.h5','salamat':'@20f_CP.h5','ulit':'@20f_CP.h5',
@@ -30,9 +30,12 @@ models_list = { 'gabi':'@20f_TE.h5','kahapon':'@20f_TE.h5','magandang':'@20f_TE.
             'basa':'@20f_AV.h5','gusto':'@20f_AV.h5','hintay':'@20f_AV.h5','tingnan':'@20f_AV.h5'
 }
 
-action_list = {'TE' : (['gabi','kahapon','magandang','ngayon','umaga','void_empty','no_sign']),
-                'S' : (['bilog','bituin','parisukat','tatsulok','void_empty','no_sign']),
-                'Q' : (['sino','ano','kailan','saan','void_empty','no_sign']),
+action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_sign']),
+                'TE2' : (['kahapon','magandang','itim','umaga','void_empty','no_sign']),
+                'S1' : (['bilog','bituin','parisukat','tatsulok','void_empty','no_sign']),
+                'S2' : (['bilog','bituin','itim','tatsulok','void_empty','no_sign']),
+                'Q1' : (['sino','ano','kailan','saan','void_empty','no_sign']),
+                'Q2' : (['itim','ano','kailan','saan','void_empty','no_sign']),
                 'P' : (['maynila','mundo','Pilipinas','void_empty','no_sign']),
                 'F' : (['babae','kamag-anak','lalake','matanda','void_empty','no_sign']),
                 'CP' : (['hi hello','mahal kita','salamat','ulit','void_empty','no_sign']),
@@ -40,9 +43,9 @@ action_list = {'TE' : (['gabi','kahapon','magandang','ngayon','umaga','void_empt
                 'AV' : (['basa','gusto','hintay','tingnan','void_empty','no_sign'])
 }
 
-WG_key = { 'gabi':'TE','kahapon':'TE','TE':'TE','ngayon':'TE','umaga':'TE', 
-            'bilog':'S','bituin':'S','parisukat':'S','tatsulok':'S',
-            'sino':'Q','ano':'Q','kailan':'Q','saan':'Q',
+WG_key = { 'gabi':'TE1','kahapon':'TE1','magandang':'TE2','ngayon':'TE1','umaga':'TE2', 
+            'bilog':'S1','bituin':'S1','parisukat':'S1','tatsulok':'S2',
+            'sino':'Q1','ano':'Q2','kailan':'Q1','saan':'Q1',
             'maynila':'P','mundo':'P','Pilipinas':'P',
             'babae':'F','kamag-anak':'F','lalake':'F','matanda':'F',
             'hi hello':'CP','mahal kita':'CP','salamat':'CP','ulit':'CP',
@@ -65,7 +68,7 @@ def load_actions(word):
     actions = np.array(action_list.get(WG_key.get(word))) 
 
 def load_model(word):
-    print('model ay: ' + models_list.get(word))
+    # print('model ay: ' + models_list.get(word))
     model.load_weights(os.path.join (r'models',models_list.get(word)))
 
 

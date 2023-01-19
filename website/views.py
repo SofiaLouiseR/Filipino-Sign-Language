@@ -75,7 +75,7 @@ def getWords(topic):
         case "Lugar":
             return shuffle(["mundo", "Maynila", "Pilipinas"])
         case "Madalas Sabihin":
-            return shuffle(["ulit", "mahal kita", "hi/hello", "salamat"])
+            return shuffle(["ulit", "mahal kita", "hi hello", "salamat"])
         case "Pamilya":
             return shuffle(["babae", "lalake", "kamag-anak", "matanda"])
         case "Panahon / Oras":
@@ -98,13 +98,13 @@ def process_qt_calculation():
 
         # Ito naman yung pagbalik sa HTML ng score, naka-json para hindi mag-refresh, unless need na mag-reload ang page, saka palitan ng render_template
         # if(pm.predict_sign(word, video().Video.get_cap())):
-        # if(pm.predict_sign('salamat')):
-        #     score = 1
-        #     print('tama predict')
-        # else:
-        #     score =0
-        #     print('mali predict')
-        score = 1 #change itong number kung anong score, 1 kung tama, 0 kung mali
+        if(pm.predict_sign(word)):
+            score = 1
+            print('tama predict')
+        else:
+            score =0
+            print('mali predict')
+        # score = 1 #change itong number kung anong score, 1 kung tama, 0 kung mali
         print(score)
     results = {'processed': 'true', 'score': score}
     return jsonify(results)
