@@ -12,7 +12,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 
 
 
-threshold = 0.9 #ilalagay sa settings
+threshold = 0.8 #ilalagay sa settings
 mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
 colors = [(245,117,16), (117,245,16), (16,117,245),(211,117,16), (123,245,16), (117,245,16)]
@@ -23,7 +23,7 @@ predictions = []
 models_list = { 'gabi':'@20f_TE1.h5','kahapon':'@20f_TE1.h5','magandang':'@20f_TE2.h5','ngayon':'@20f_TE1.h5','umaga':'@20f_TE2.h5', 
             'bilog':'@20f_S1.h5','bituin':'@20f_S1.h5','parisukat':'@20f_S1.h5','tatsulok':'@20f_P.h5',
             'sino':'@20f_Q1.h5','ano':'@20f_Q2.h5','kailan':'@20f_Q1.h5','saan':'@20f_Q1.h5',
-            'maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
+            'Maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
             'babae':'@20f_F2.h5','kamag-anak':'@20f_F1.h5','lalake':'@20f_F1.h5','matanda':'@20f_F3.h5',
             'hi o hello':'@20f_F1.h5','mahal kita':'@20f_F2.h5','salamat':'@20f_CP1.h5','ulit':'@20f_CP2.h5',
             'itim':'@20f_Q2.h5','kayumanggi':'@20f_C.h5','lila':'@20f_C.h5','puti':'@20f_C.h5',
@@ -36,7 +36,7 @@ action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_
                 'S2' : (['bilog','bituin','itim','tatsulok','void_empty','no_sign']),
                 'Q1' : (['sino','ano','kailan','saan','void_empty','no_sign']),
                 'Q2' : (['itim','ano','kailan','saan','void_empty','no_sign']),
-                'P' : (['maynila','mundo','Pilipinas','tatsulok','void_empty','no_sign']),
+                'P' : (['Maynila','mundo','Pilipinas','tatsulok','void_empty','no_sign']),
                 'F1' : (['hi o hello','kamag-anak','lalake','matanda','void_empty','no_sign']),
                 'F2' : (['babae','parisukat','mahal kita','bilog','void_empty','no_sign']),
                 'F3' : (['matanda','parisukat','kamag-anak','saan','void_empty','no_sign']) ,
@@ -50,7 +50,7 @@ action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_
 WG_key = { 'gabi':'TE1','kahapon':'TE1','magandang':'TE2','ngayon':'TE1','umaga':'TE2', 
             'bilog':'S1','bituin':'S1','parisukat':'S1','tatsulok':'P',
             'sino':'Q1','ano':'Q2','kailan':'Q1','saan':'Q1',
-            'maynila':'P','mundo':'P','Pilipinas':'P',
+            'Maynila':'P','mundo':'P','Pilipinas':'P',
             'babae':'F2','kamag-anak':'F1','lalake':'F1','matanda':'F3',
             'hi o hello':'F1','mahal kita':'F2','salamat':'CP1','ulit':'CP2',
             'itim':'Q2','kayumanggi':'C1','lila':'C1','puti':'C1',
@@ -150,7 +150,7 @@ def predict_sign(word):
     frame_num = 0
     
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        while True and frame_num <200: #Pwede adjust frame_num to achieve 15 sec na waiting
+        while True and frame_num <100: #Pwede adjust frame_num to achieve 15 sec na waiting
             frame_num += 1
             # print (frame_num)
             # Read feed
@@ -195,12 +195,16 @@ def predict_sign(word):
                 if len(sentence) > 5: 
                     sentence = sentence[-5:]
                 print(sentence)
-                print(sentence[-1])
-                print(word)
-                if sentence[-1] == word:
-                    predicted = True
-                    print(predicted)
-                    break 
+                
+                try:
+                    print(sentence[-1])
+                    print(word)
+                    if sentence[-1] == word:
+                        predicted = True
+                        print(predicted)
+                        break 
+                except:
+                    print('sentence is')
 
 
 
