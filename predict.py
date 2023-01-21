@@ -26,11 +26,11 @@ models_list = { 'gabi':'@20f_TE1.h5','kahapon':'@20f_TE1.h5','magandang':'@20f_T
             'Maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
             'babae':'@20f_F2.h5','kamag-anak':'@20f_F1.h5','lalake':'@20f_F1.h5','matanda':'@20f_F3.h5',
             'hi o hello':'@20f_F1.h5','mahal kita':'@20f_F2.h5','salamat':'@20f_CP1.h5','ulit':'@20f_CP2.h5',
-            'itim':'@20f_Q2.h5','kayumanggi':'@20f_C.h5','lila':'@20f_C.h5','puti':'@20f_C.h5',
+            'itim':'@20f_Q2.h5','kayumanggi':'@20f_C1.h5','lila':'@20f_C1.h5','puti':'@20f_C1.h5',
             'basa':'@20f_AV1.h5','gusto':'@20f_AV1.h5','hintay':'@20f_AV1.h5','tingnan':'@20f_AV2.h5'
 }
 
-action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_sign']),
+action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_sign']) ,
                 'TE2' : (['kahapon','magandang','itim','umaga','void_empty','no_sign']),
                 'S1' : (['bilog','bituin','parisukat','tatsulok','void_empty','no_sign']),
                 'S2' : (['bilog','bituin','itim','tatsulok','void_empty','no_sign']),
@@ -39,10 +39,10 @@ action_list = {'TE1' : (['gabi','kahapon','magandang','ngayon','void_empty','no_
                 'P' : (['Maynila','mundo','Pilipinas','tatsulok','void_empty','no_sign']),
                 'F1' : (['hi o hello','kamag-anak','lalake','matanda','void_empty','no_sign']),
                 'F2' : (['babae','parisukat','mahal kita','bilog','void_empty','no_sign']),
-                'F3' : (['matanda','parisukat','kamag-anak','saan','void_empty','no_sign']) ,
+                'F3' : (['matanda','parisukat','kamag-anak','saan','void_empty','no_sign']),
                 'CP1' : (['hi o hello','mahal kita','salamat','ulit','void_empty','no_sign']),
                 'CP2' : (['kayumanggi','puti','salamat','ulit','void_empty','no_sign']),
-                'C1' : (['itim','kayumanggi','lila','puti','void_empty','no_sign']),
+                'C1' : (['mundo','kayumanggi','lila','puti','void_empty','no_sign']),
                 'AV1' : (['basa','gusto','hintay','tingnan','void_empty','no_sign']),
                 'AV2' : (['basa','gusto','mundo','tingnan','void_empty','no_sign'])
 }
