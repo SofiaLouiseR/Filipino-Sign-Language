@@ -138,7 +138,7 @@ def open_camera(cap):
 def predict_sign(word):
     # load_actions(word)
     actions = np.array(action_list.get(WG_key.get(word))) 
-    print(actions)
+    print('ang need ay '+actions)
 
     load_model(word)
     
@@ -180,7 +180,7 @@ def predict_sign(word):
             if len(sequence) == 20:
                 
                 res = model.predict(np.expand_dims(sequence, axis=0))[0]
-                print(actions[np.argmax(res)])
+                # print(actions[np.argmax(res)])
                 predictions.append(np.argmax(res))
             #3. Viz logic
                 if np.unique(predictions[-10:])[0]==np.argmax(res): 
@@ -198,13 +198,17 @@ def predict_sign(word):
                 
                 try:
                     print(sentence[-1])
-                    print(word)
+                    # printing accuracy
+                    accuracy_value = res[np.argmax(res)] * 100
+                    print('accuracy: ' + str(accuracy_value))
+                    
                     if sentence[-1] == word:
                         predicted = True
                         print(predicted)
                         break 
-                except:
-                    print('sentence is')
+                except Exception as e:
+                    print('sentence is empty now')
+                    print(e)
 
 
 
