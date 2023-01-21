@@ -244,6 +244,10 @@ p.card-text {
     white-space: break-spaces;
 }
 
+#activities {
+    margin: 1rem;
+}
+
 @keyframes openclose {
     0% {
         width: 0;

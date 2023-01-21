@@ -1,12 +1,13 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, session
 from flask import Response
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Note, Activities
 from sklearn.utils import shuffle
 from . import db
 import json
 # import cv2
 import predict as pm
+from iso8601 import parse_date
 views = Blueprint('views', __name__)
 
 
@@ -113,7 +114,22 @@ def process_answer():
 @views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    return render_template("profile.html", user=current_user)
+    activities = Activities.query.filter_by(user_id=current_user.id).order_by(Activities.date.desc()).all()
+    if activities:
+        results = [{'lesson': a.lesson, 'score': a.score, 'date': a.date, 'words': a.words} for a in activities]
+    else:
+        results = ''
+    return render_template("profile.html", user=current_user, activities=results)
+
+
+@views.route('/recordActivity', methods=['POST'])
+def record_activity():
+    activity_data = json.loads(request.data)
+    new_activity = Activities(lesson=activity_data['lesson'], score=activity_data['score'], date=parse_date(
+        activity_data['activityDate']), words=activity_data['words'], user_id=current_user.id)
+    db.session.add(new_activity)
+    db.session.commit()
+    return jsonify({'activityId': new_activity.id})
 
 
 # Reference sa pag-record ng score
@@ -132,19 +148,17 @@ def delete_note():
 
 # -----------------------------------
 def gen(camera):
-    
+
     while True:
-        frame=camera.get_frame() 
-        yield(b'--frame\r\n'
-         b'Content-Type:  image/jpeg\r\n\r\n' + frame +
-         b'\r\n\r\n')
-    
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type:  image/jpeg\r\n\r\n' + frame +
+               b'\r\n\r\n')
 
 
 @views.route('/video')
-
 def video():
-    
+
     from camera import Video
     return Response(gen(Video()),
-    mimetype='multipart/x-mixed-replace; boundary=frame')
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
