@@ -137,8 +137,8 @@ def open_camera(cap):
 
 def predict_sign(word):
     # load_actions(word)
-    actions = np.array(action_list.get(WG_key.get(word))) 
-    print('ang need ay '+actions)
+    actions = action_list.get(WG_key.get(word))
+    # print('ang need ay '+str (actions))
 
     load_model(word)
     
