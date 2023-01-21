@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Home | Filipino Sign Language{% endblock %} {% block content
+{% extends "base.html" %} {% block title %}Quiz | Filipino Sign Language{% endblock %} {% block content
 %}
 
 {% if topic=="none" %}
@@ -8,7 +8,7 @@
 {% endif %}
   <form method="POST" action="/quiz">
     <div class="card-header">
-      <b>Select a topic</b>
+      <b>Pumili ng isang paksa</b>
     </div>
     <input type="text" name="topic" value="" hidden>
     <div class="list-group list-group-flush">
@@ -40,34 +40,42 @@
 {% else %}
 <div id="videoContainer" class="keep-scrolling">
 {% endif %}
-  <div>
-    <div id="stars" class="alert alert-warning alter-dismissable d-flex justify-content-center gap-2 fade show" role="alert">
-      <h1 style="margin: 0;">{{ topic }}</h1>
-      <!-- <span id="currentScore">{{ currentScore }}1</span> -->
-      <svg id="star1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path
-          d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
-      </svg>
-      <svg id="star2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path
-          d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
-      </svg>
-      <svg id="star3" class="stars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path
-          d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
-      </svg>
+  <div id="videoContainerLayout">
+    <span id="resultsDisplay">TAMA</span>
+    <div style="width: 100%;">
+      <div id="stars" class="alert alert-warning alter-dismissable d-flex justify-content-center gap-2 fade show" role="alert">
+        <span style="margin: 0;">{{ topic }}</span>
+        <!-- <span id="currentScore">{{ currentScore }}1</span> -->
+        <svg id="star1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
+        </svg>
+        <svg id="star2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
+        </svg>
+        <svg id="star3" class="stars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z" class="stars-paths" />
+        </svg>
+      </div>
+      <div id="videoFeed">
+        <!-- inalis ko muna <img src="url_for('video')"> -->
+        <img src="{{ url_for('views.video') }}">
+      </div>
     </div>
-    <h1 id="currentWord">Sign</h1>
-    <div id="videoFeed">
-      <!-- inalis ko muna <img src="url_for('video')"> -->
-      <img src="{{ url_for('views.video') }}">
-    </div>
-    <div class="w-100 d-flex justify-content-end gap-2" style="margin-bottom:7rem;">
-      <button id="skipBtn" type="button" class="btn btn-secondary">Skip</button>
-      <button id="startBtn" type="button" class="btn btn-primary">Practice</button>
+    <div id="videoContainerLayout2" class="d-flex gap-2 align-items-start">
+      <h1 id="currentWord" class="w-100">Sign</h1>
+      <div class="d-flex flex-column flex-wrap gap-2">
+        <div style="gap: 0.5rem;display: flex;">
+          <button id="skipBtn" type="button" class="btn btn-secondary">Skip</button>
+          <button id="startBtn" type="button" class="btn btn-primary">Start</button>
+        </div>
+        <p id="quizGuide">Pindutin ang Start button kapag handa ka na.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -122,6 +130,12 @@
         try {
           $('#star' + currentWordIndex + ' path').addClass('wrongAnswer');
           console.log('Skipped 1 word, marked as wrong');
+          $('#resultsDisplay').removeClass('correct').removeClass('wrong');
+          $('#resultsDisplay').text('SKIPPED');
+          $('#resultsDisplay').show();
+          setTimeout(function () {
+            $('#resultsDisplay').hide();
+          }, 2000);
           showNextWord();
         } catch (e) {
           console.log(e);
@@ -132,8 +146,8 @@
       }
     });
 
-    $("#startBtn").on("click", function () { // TO DO:
-      // let arrayData = { "currentWord": $('#currentWord').text() };
+    $("#startBtn").on("click", function () {
+      $('#skipBtn, #startBtn').prop('disabled', true);
       let arrayData = { "currentWord": currentWords[currentWordIndex] };
       $.ajax({
         type: "POST",
@@ -143,19 +157,28 @@
         dataType: 'json',
         success: function (data, textStatus) {
           console.log(data, textStatus);
+          $('#skipBtn, #startBtn').prop('disabled', false);
           currentSessionScore += data.score; // Save score
-
+          
           // Kung hindi pa ito ang last word for this session
           if (currentWordIndex < (currentWords.length - 1)) {
             currentWordIndex++; // increase para sa next word pero at the same time, para na rin tumama sa index ng #star nth child
             try {
               if (data.score > 0) {
+                $('#resultsDisplay').removeClass('wrong').addClass('correct');
+                $('#resultsDisplay').text('TAMA');
                 $('#star' + currentWordIndex + ' path').addClass('correctAnswer');
                 console.log('Done checking 1 word, marked as correct');
               } else {
+                $('#resultsDisplay').removeClass('correct').addClass('wrong');
+                $('#resultsDisplay').text('MALI');
                 $('#star' + currentWordIndex + ' path').addClass('wrongAnswer');
-                console.log('Skipped 1 word, marked as wrong');
+                console.log('Done checking 1 word, marked as wrong');
               }
+              $('#resultsDisplay').show();
+              setTimeout(function () {
+                $('#resultsDisplay').hide();
+              }, 2000);
               showNextWord();
             } catch (e) {
               console.log(e);
@@ -174,14 +197,19 @@
 
     function endCurrentQuizSession() {
       var remarks = '';
+      console.log("End, score: " + currentSessionScore)
       $('#videoContainer').hide();
-      if(currentSessionScore == 0) {
+      if (currentSessionScore == 0) {
         remarks = "Okay lang 'yan! Praktis lang. 😊"
-      } else if (currentSessionScore > 0) {
-        remarks = `May dagdag na ${currentSessionScore} points ka! 🎉`;
-        // recordScore();
+      } else if (currentSessionScore == 1) {
+        remarks = `May dagdag kang ${currentSessionScore} point! 🎉`;
+      } else if (currentSessionScore > 1) {
+        remarks = `May dagdag kang ${currentSessionScore} points! 😎`;
       }
-      $('#sessionScoreContainer p.card-text').html(remarks)
+      if(words.slice(((currentSessionIndex+1) * 3), ((currentSessionIndex+1) * 3) + 3).length == 0) {
+        remarks += `\nNatapos mo nang praktisin ang lahat ng mga salita sa paksang ito.`;
+      }
+      $('#sessionScoreContainer p.card-text').text(remarks)
       $('#sessionScoreContainer').show();
       currentWordIndex = 0;
       currentSessionScore = 0;
