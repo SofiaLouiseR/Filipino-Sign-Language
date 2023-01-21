@@ -12,6 +12,7 @@ class Note(db.Model):
 class Activities(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     lesson = db.Column(db.String(10000))
+    words = db.Column(db.String(10000))
     score = db.Column(db.Integer)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

@@ -4,6 +4,8 @@ flask-login
 scikit-learn
 
 opencv-python
+iso8601
+
 # !pip3 install mediapipe --user
 conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
 # !pip install opencv-python

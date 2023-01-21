@@ -7,9 +7,30 @@
   <a href="/logout" class="list-group-item list-group-item-action">Log out</a>
 </div>
 
+
+<div id="activities" class="list-group">
+  <h1>Recent Activities</h1>
+</div>
+
 <script>
   $(document).ready(function () {
     $('nav.fixed-bottom li:nth-child(4) a, nav.fixed-bottom li:nth-child(4) a svg path').addClass('active');
+    {% if activities %}
+    activities = {{ activities | tojson }};
+    console.log("Activities", activities);
+    for (var i = 0; i < activities.length; i++) {
+      $('#activities').append(
+        `<li class="list-group-item list-group-item-action" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">${activities[i].lesson} | Score: ${activities[i].score}</h5>
+            <small>${activities[i].date}</small>
+          </div>
+          <p class="mb-1">Words: ${activities[i].words}</p>
+        </li>`
+        )
+      console.log(activities[i].date)
+    }
+    {% endif %}
   });
 </script>
 {% endblock %}
