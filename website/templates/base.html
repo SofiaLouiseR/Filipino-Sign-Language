@@ -39,18 +39,18 @@
             <input class="form-control" id="searchInput" type="text" placeholder="Search...">
           </div>
         <button id="toggleSearch" class="btn d-flex align-items-center" type="button" onclick="
-        if($('#search').hasClass('d-none')){
-                        $('#topNav').addClass('showSearch');
+          if($('#search').hasClass('d-none')){
+            $('#topNav').addClass('showSearch');
             $('#search').removeClass('d-none').addClass('d-flex');
             $('#search-results').show();
             $('#overlay').show();
           }
-            else {
-                          $('#topNav').removeClass('showSearch');
-              $('#search').removeClass('d-flex').addClass('d-none');
-              $('#search-results').hide();
-              $('#overlay').hide();
-              }">
+          else {
+            $('#topNav').removeClass('showSearch');
+            $('#search').removeClass('d-flex').addClass('d-none');
+            $('#search-results').hide();
+            $('#overlay').hide();
+            }">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="1.2rem">
             <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
             <path
@@ -252,6 +252,18 @@
         } else {
           $('#noResults').hide();
         }
+      });
+
+      $("#searchWordsList").on('click', 'tr', function() {
+        let topic = $(this).find("td:nth-child(1)").text();
+        let word = $(this).find("td:nth-child(2)").text();
+        $("#topicSelector").val(topic);
+        let videoId = $("#topicsList tr td:nth-child(2)").filter(function() {
+          return $(this).text() === word;
+        }).closest("tr").find("td:nth-child(3)").text();
+        console.log(topic, word, videoId);
+        $("#video-container > iframe").attr("src", `https://www.youtube.com/embed/${videoId}?playlist=${videoId}&loop=1&autoplay=1`);
+        hideSearch();
       });
     });
   </script>

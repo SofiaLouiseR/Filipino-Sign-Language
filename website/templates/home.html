@@ -3,7 +3,7 @@
 <div class="d-flex lesson-container">
   <div id="block1">
     <div class="container video mb-3" id="video-container">
-      <iframe src="https://www.youtube.com/embed/VwWP8wX8BwQ" id="embedded-video" title="YouTube video player"
+      <iframe src="https://www.youtube.com/embed/CqCHT7qaQUg?playlist=CqCHT7qaQUg&loop=1&autoplay=1" id="embedded-video" title="YouTube video player"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
@@ -38,130 +38,162 @@
         <tr>
           <td>Pandiwa</td>
           <td>hintay</td>
+          <td></td>
         </tr>
         <tr>
           <td>Pandiwa</td>
           <td>gusto</td>
+          <td></td>
         </tr>
         <tr>
           <td>Pandiwa</td>
           <td>tingnan</td>
+          <td></td>
         </tr>
         <tr>
           <td>Pandiwa</td>
           <td>basa</td>
+          <td></td>
         </tr>
         <tr>
           <td>Kulay</td>
           <td>itim</td>
+          <td></td>
         </tr>
         <tr>
           <td>Kulay</td>
           <td>puti</td>
+          <td></td>
         </tr>
         <tr>
           <td>Kulay</td>
           <td>kayumanggi</td>
+          <td></td>
         </tr>
         <tr>
           <td>Kulay</td>
-          <td>violet</td>
+          <td>lila</td>
+          <td></td>
         </tr>
         <tr>
           <td>Madalas Sabihin</td>
           <td>ulit</td>
+          <td>HiFkaKsZLCI</td>
         </tr>
         <tr>
           <td>Madalas Sabihin</td>
           <td>mahal kita</td>
+          <td>RveycR6533Y</td>
         </tr>
         <tr>
           <td>Madalas Sabihin</td>
           <td>hi/hello</td>
+          <td>yWOkJy5c8dw</td>
         </tr>
         <tr>
           <td>Madalas Sabihin</td>
           <td>salamat</td>
+          <td>O_o_9mjvG6A</td>
         </tr>
         <tr>
           <td>Pamilya</td>
           <td>babae</td>
+          <td></td>
         </tr>
         <tr>
           <td>Pamilya</td>
           <td>lalake</td>
+          <td></td>
         </tr>
         <tr>
           <td>Pamilya</td>
           <td>kamag-anak</td>
+          <td></td>
         </tr>
         <tr>
           <td>Pamilya</td>
           <td>matanda</td>
+          <td></td>
         </tr>
         <tr>
           <td>Lugar</td>
           <td>mundo</td>
+          <td></td>
         </tr>
         <tr>
           <td>Lugar</td>
           <td>Maynila</td>
+          <td></td>
         </tr>
         <tr>
           <td>Lugar</td>
           <td>Pilipinas</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panghalip Pananong</td>
           <td>sino</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panghalip Pananong</td>
           <td>ano</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panghalip Pananong</td>
           <td>kailan</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panghalip Pananong</td>
           <td>saan</td>
-        </tr>
-        <tr>
-          <td>Hugis</td>
-          <td>bituin</td>
-        </tr>
-        <tr>
-          <td>Hugis</td>
-          <td>parisukat</td>
+          <td></td>
         </tr>
         <tr>
           <td>Hugis</td>
           <td>bilog</td>
+          <td>CqCHT7qaQUg</td>
+        </tr>
+        <tr>
+          <td>Hugis</td>
+          <td>bituin</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Hugis</td>
+          <td>parisukat</td>
+          <td></td>
         </tr>
         <tr>
           <td>Hugis</td>
           <td>tatsulok</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panahon / Oras</td>
           <td>ngayon</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panahon / Oras</td>
           <td>gabi</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panahon / Oras</td>
           <td>magandang</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panahon / Oras</td>
           <td>umaga</td>
+          <td></td>
         </tr>
         <tr>
           <td>Panahon / Oras</td>
           <td>kahapon</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -177,12 +209,18 @@
       $("#topicsList td:nth-child(1):not(:contains('" + $("#topicSelector").val() + "'))").parent().hide();
       let words = [];
       $('#topicsList tr:visible td:nth-child(2)').each(function (i, obj) {
-        words.push($(this).html());
+        // words.push($(this).html());
       });
-      $('#allWordsForQuiz').val(words.join(','));
+      let videoId = $('#topicsList tr:visible:first td:nth-child(3)').text();
+      $("#video-container > iframe").attr("src", `https://www.youtube.com/embed/${videoId}?playlist=${videoId}&loop=1&autoplay=1`);
     }
     $('#topicSelector').change(function () {
       filterTopicsList();
+    });
+
+    $("#topicsList").on('click', 'tr', function() {
+      let videoId = $(this).find("td:nth-child(3)").text();
+      $("#video-container > iframe").attr("src", `https://www.youtube.com/embed/${videoId}?playlist=${videoId}&loop=1&autoplay=1`);
     });
 
     filterTopicsList();
