@@ -250,6 +250,15 @@ p.card-text {
     margin: 1rem;
 }
 
+#profileSection {
+    overflow: auto;
+    height: 80%!important;
+}
+
+#profileSection::-webkit-scrollbar {
+    width: 0 !important;
+}
+
 @keyframes openclose {
     0% {
         width: 0;

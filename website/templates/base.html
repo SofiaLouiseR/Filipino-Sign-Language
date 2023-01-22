@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}" crossorigin="anonymous" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
@@ -313,15 +314,6 @@
             <span>Quiz</span>
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link d-flex flex-column" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="height: 1.5rem;">
-              <path
-                d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z" />
-            </svg>
-            <span>Live</span>
-          </a>
-        </li> -->
         <li class="nav-item">
           <a class="nav-link d-flex flex-column" href="/profile">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 1.5rem;">
@@ -329,20 +321,9 @@
               <path
                 d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
             </svg>
-            </svg>
             <span>Profile</span>
           </a>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> -->
       </ul>
     </div>
   </nav>
@@ -351,7 +332,7 @@
   <script>
     $(document).ready(function () {
       $("nav.fixed-bottom a").click(function () {
-        $("nav.fixed-bottom a, nav.fixed-bottom a svg path").removeClass("active");
+        $("nav.fixed-bottom a svg path").removeClass("active");
         $(this).addClass("active");
         $(this).find("path").addClass("active");
       });

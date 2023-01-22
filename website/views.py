@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, session
 from flask import Response
 from flask_login import login_required, current_user
-from .models import Note, Activities
+from .models import Note, Activities, User
 from sklearn.utils import shuffle
 from . import db
 import json
@@ -128,6 +128,10 @@ def record_activity():
     new_activity = Activities(lesson=activity_data['lesson'], score=activity_data['score'], date=parse_date(
         activity_data['activityDate']), words=activity_data['words'], user_id=current_user.id)
     db.session.add(new_activity)
+    db.session.commit()
+    
+    user_data = User.query.filter_by(id=current_user.id).first()
+    user_data.score += activity_data['score']
     db.session.commit()
     return jsonify({'activityId': new_activity.id})
 
