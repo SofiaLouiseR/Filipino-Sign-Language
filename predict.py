@@ -25,7 +25,7 @@ models_list = { 'gabi':'@20f_TE1.h5','kahapon':'@20f_TE1.h5','magandang':'@20f_T
             'sino':'@20f_Q1.h5','ano':'@20f_Q2.h5','kailan':'@20f_Q1.h5','saan':'@20f_Q1.h5',
             'Maynila':'@20f_P.h5','mundo':'@20f_P.h5','Pilipinas':'@20f_P.h5',
             'babae':'@20f_F2.h5','kamag-anak':'@20f_F1.h5','lalake':'@20f_F1.h5','matanda':'@20f_F3.h5',
-            'hi o hello':'@20f_F1.h5','mahal kita':'@20f_F2.h5','salamat':'@20f_CP1.h5','ulit':'@20f_CP2.h5',
+            'hi o hello':'@20f_F1.h5','mahal kita':'@20f_CP1.h5','salamat':'@20f_CP1.h5','ulit':'@20f_CP2.h5',
             'itim':'@20f_Q2.h5','kayumanggi':'@20f_C1.h5','lila':'@20f_C1.h5','puti':'@20f_C1.h5',
             'basa':'@20f_AV1.h5','gusto':'@20f_AV1.h5','hintay':'@20f_AV1.h5','tingnan':'@20f_AV2.h5'
 }
@@ -52,7 +52,7 @@ WG_key = { 'gabi':'TE1','kahapon':'TE1','magandang':'TE2','ngayon':'TE1','umaga'
             'sino':'Q1','ano':'Q2','kailan':'Q1','saan':'Q1',
             'Maynila':'P','mundo':'P','Pilipinas':'P',
             'babae':'F2','kamag-anak':'F1','lalake':'F1','matanda':'F3',
-            'hi o hello':'F1','mahal kita':'F2','salamat':'CP1','ulit':'CP2',
+            'hi o hello':'F1','mahal kita':'CP1','salamat':'CP1','ulit':'CP2',
             'itim':'Q2','kayumanggi':'C1','lila':'C1','puti':'C1',
             'basa':'AV1','gusto':'AV1','hintay':'AV1','tingnan':'AV2'
 }
